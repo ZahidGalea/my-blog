@@ -17,7 +17,10 @@ const {pageTitle} = Astro.props;
 <body>
 <Header/>
 <!-- Here will come the code inserted from the pages-->
-<slot/>
+<div class="mb-10">
+  <slot/> 
+</div>
+
 <Footer/>
 </body>
 </html>

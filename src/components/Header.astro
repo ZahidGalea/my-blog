@@ -4,9 +4,12 @@ import Navigation from './Navigation.astro';
 import ThemeIcon from "./ThemeIcon.astro";
 ---
 <header>
-    <nav>
-        <Hamburger/>
-        <ThemeIcon />
-        <Navigation/>
-    </nav>
+    <div class="flex w-full border-b-theme-0 border-b-[1px] justify-center"><h1 class="font-thin">Zahid Galea</h1></div>
+  <nav class="flex justify-between items-start p-4 w-full bg-theme-4 theme-0 dark:border-b-theme-2 border-b-2">
+    <div class="flex items-start">
+      <Hamburger class="mr-4 md:mr-0"/> <!-- Asegura espacio entre la hamburguesa y la navegación -->
+      <Navigation/>
+    </div>
+    <ThemeIcon class="ml-auto"/> <!-- Esto empuja el ThemeIcon al final del contenedor de nav -->
+  </nav>
 </header>

@@ -1,0 +1,103 @@
+---
+import '../styles/global.css';
+const pageTitle = "Zahid Galea - Welcome";
+import BaseLayout from "../layouts/BaseLayout.astro";
+const identification = {
+    name: "Zahid Alejandro Galea Jorge",
+    birthdate: "15th November 1996",
+    location: "Buenos Aires",
+    nationality: "Venezuelan",
+    mail: "zahidale.zg@gmail.com"
+}
+const experiences = [
+    {
+        company: "ACID Labs",
+        position: "Lead of Data Engineering",
+        description: "Lead Data Engineer responsibilities including Pre-Sales, architecture, and more."
+    },
+    {
+        company: "KAVAK",
+        position: "Senior Software Engineer",
+        description: "Software Engineer for the global data platform Architecture team."
+    },
+    {
+        company: "ACID Labs",
+        position: "Senior Data Engineer",
+        description: "Data Developer in a POD, assigned to a logistic and supply chain area of the company. "
+    },
+    {
+        company: "Kibernum",
+        position: "Cloud Data Engineer",
+        description: "Cloud Data Engineer specialized on Google Cloud Platform"
+    },
+    {
+        company: "PwC",
+        position: "Associate Junior",
+        description: "Associate on the Center of Artificial Intelligence of PwC Chile."
+    }
+]
+---
+<BaseLayout pageTitle={pageTitle}>
+    <div class="flex flex-col md:flex-row items-center justify-center align-middle max-w-3xl p-2 mb-5 mt-5 mx-auto">
+        <h1 class="text-5xl mb-4 md:mb-0 md:mr-4">My CV.</h1>
+        <div class="bg-theme-2 p-4 rounded-2xl">
+            <a href="/Zahid Galea Curriculum English.pdf"
+               download="Zahid Galea CV English.pdf"
+               class="text-theme-4">Download PDF for more Details</a>
+        </div>
+    </div>
+    <div class="font-sans leading-normal tracking-normal">
+        <div class="container mx-auto p-5">
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/3">
+                    <div class="p-6">
+                        <h1 class="text-3xl font-bold mb-2">{identification.name}</h1>
+                        <p class="mb-4">{identification.birthdate}</p>
+                        <p class="mb-4">{identification.location}</p>
+                        <p class="mb-4">Nationality: {identification.nationality}</p>
+                        <a href="mailto:zahidale.zg@gmail.com" class="text-blue-500">{identification.mail}</a>
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <div class="p-6">
+                        <h2 class="text-2xl font-bold mb-3">Resume</h2>
+                        <p class="mb-5">I am a lover of technology, innovation and how it can impact the world. I am a
+                            faithful believer and promoter of reinvention, creativity, and continuous improvement.
+                        </p>
+                        <h2 class="text-2xl font-bold mb-3">Professional Experience</h2>
+                        <div class="grid md:grid-cols-2 gap-4 mb-5">
+                            {experiences.map((experience) => (
+                                    <div>
+                                        <h3 class="font-bold">{experience.company} — {experience.position}</h3>
+                                        <ul class="list-disc ml-5">
+                                            <li>{experience.description}</li>
+                                        </ul>
+                                    </div>
+                            ))}
+                        </div>
+
+                        <h2 class="text-2xl font-bold mb-3">Professional Certifications</h2>
+                        <ul class="list-disc ml-5 mb-5">
+                            <li><a href="https://google.accredible.com/6df3e512-380a-4670-b1ff-177e304e6d3a" target="_blank">Google
+                                Cloud Certified - Professional Data Engineer. Sep 2023 - Sep 2025</a> 
+                            </li>
+
+                        </ul>
+
+                        <h2 class="text-2xl font-bold mb-3">Studies</h2>
+                        <ul class="list-disc ml-5 mb-5">
+                            <li>DUOC UC, Providencia — Informatics Engineering. February 2020</li>
+                            <!-- More studies can be added here -->
+                        </ul>
+
+                        <h2 class="text-2xl font-bold mb-3">Language</h2>
+                        <p class="mb-5">Intermediate English B1.</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</BaseLayout>
+

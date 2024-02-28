@@ -1,20 +1,24 @@
 ---
 import '../styles/global.css';
+import {Image} from 'astro:assets';
+import myImage from '../images/me.png';
 const pageTitle = "Zahid Galea - Welcome";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 <BaseLayout pageTitle={pageTitle}>
-    <div class="flex flex-row max-w-3xl p-2 mb-20 mt-20">
-        <h1 class="text-5xl">Hi, Welcome to my Space.</h1>
-    </div>
+<div class="flex flex-col md:flex-row items-center max-w-3xl p-2 mb-20 mt-20 mx-auto">
+    <h1 class="text-5xl mb-4 md:mb-0 md:mr-4">Hola!, Bienvenid@ a mi espacio.</h1>
+    <Image src={myImage} alt="Zahid Galea" class="w-full h-auto rounded-full object-cover mx-auto max-w-36"/>
+</div>
+
     <h1 class="text-2xl">¡Hola! Soy Zahid Galea 👋</h1>
     <p>
         <br>
-        Nací en Venezuela 🇻🇪 y, buscando nuevas oportunidades, me mudé a Santiago de Chile 🇨🇱 cuando tenía 20 años y
-        actualmente me encuentro en Buenos Aires 🇦🇷 desde hace 2 años.
+        Nací en Venezuela 🇻🇪, buscando nuevas oportunidades, me mudé a Santiago de Chile 🇨🇱 con 20 años y
+        en la actualidad resido en Buenos Aires 🇦🇷 desde hace 2 años.
         <br><br>
         Mi curiosidad y pasión
-        por la tecnología me llevaron a sumergirme primera mente en el mundo de "FullStack" en el 2017 y posteriormente
+        por la tecnología me llevaron a sumergirme primeramente en el mundo de "FullStack" en el 2017 y posteriormente
         en el mundo del "machine learning" a mediados de 2018. Desde entonces,
         la vida me ha guiado por el camino de la arquitectura e "ingeniería de datos" principalmente.
         <br><br>
@@ -23,7 +27,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
         software y siempre estoy en la búsqueda de probar nuevas tecnologías.
         <br>
         <br>
-        Mi trayectoria profesional me ha permitido desempeñar roles en DevOps, DataOps, ingeniería de datos, desarrollo
+        Mi trayectoria profesional me ha llevado a desempeñar roles en DevOps, DataOps, ingeniería de datos, desarrollo
         Fullstack, y más. Me encanta automatizar procesos y explorar herramientas de administración y arquitectura de
         datos. ¡Siempre estoy listo para un nuevo desafío!
         <br>

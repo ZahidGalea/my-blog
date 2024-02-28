@@ -3,18 +3,8 @@ const platform = "github";
 const username = "ZahidGalea";
 import Social from './Social.astro';
 ---
-<style>
-    footer {
-        display: flex;
-        gap: 1rem;
-        margin-top: 2rem;
-    }
-</style>
-<footer>
-    <Social platform="twitter" username="astrodotbuild"/>
-    <Social platform="github" username="withastro"/>
-    <Social platform="youtube" username="astrodotbuild"/>
+<footer class="flex gap-4 mt-8 p-4 justify-center 
+items-center fixed inset-x-0 bottom-0 bg-theme-4 dark:bg-theme-0">
+    <Social platform="linkedin" username="zahidgalea"/>
+    <Social platform="github" username="ZahidGalea"/>
 </footer>
-<script>
-    import "../scripts/menu.js";
-</script>

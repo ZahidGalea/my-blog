@@ -5,7 +5,7 @@ export async function GET(context) {
     title: 'Zahid Galea | Blog',
     description: 'My journey in Software Engineering and Data Things.',
     site: context.site,
-    items: await pagesGlobToRssItems(import.meta.glob('./**/*.md')),
+    items: await pagesGlobToRssItems(import.meta.glob('./**/*.mdx')),
     customData: `<language>en-us</language>`,
   });
 }

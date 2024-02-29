@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import BlogSearchBar from "../components/BlogSearchBar.astro";
+
+const allPosts = await Astro.glob('./posts/*.mdx');
+const pageTitle = "Blogs Search";
+---
+
+<BaseLayout pageTitle={pageTitle}>
+    <div class="flex flex-col md:flex-row items-center max-w-3xl p-2 mb-5 mt-5 mx-auto">
+        <h1 class="text-5xl mb-4 md:mb-0 md:mr-4">My Blogs.</h1>
+    </div>
+    <BlogSearchBar allPosts={allPosts}/>
+</BaseLayout>

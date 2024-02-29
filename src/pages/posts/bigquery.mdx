@@ -1,0 +1,84 @@
+---
+title: 'Bigquery Pro-Tips'
+slug: "bigquery-pro-tips"
+pubDate: 2022-07-01
+description: 'Tips for data engineers'
+author: 'Zahid Galea'
+tags: [ "data engineering","development" ]
+---
+
+# BigQuery Pro Tips for Data Engineering
+
+BigQuery is a powerhouse for data analytics, offering scalable, serverless data processing and SQL-like capabilities.
+Here are some pro-tips that I've found invaluable for optimizing performance and managing costs effectively.
+
+## 1. Leveraging Partitioning and Clustering
+
+### Partitioning
+
+- **Use Date/Time-based partitioning** for tables with a time dimension. This dramatically reduces the amount of data
+  scanned in queries, lowering costs and improving performance.
+- **Consider Integer Range Partitioning** for non-date columns with a high cardinality but predictable range.
+
+### Clustering
+
+- **Combine Clustering with Partitioning** to further reduce query costs by organizing data within each partition.
+- **Choose up to four columns for clustering**, prioritizing those you frequently filter or join on.
+
+## 2. Cost Control and Optimization
+
+### Avoid Select *
+
+- **Be explicit with column selection** to minimize data processed. `SELECT *` is convenient but costly in large
+  datasets.
+
+### Use Preview Options
+
+- **Preview data before querying** with `bq show --schema` or the web UI to understand your data and avoid unnecessary
+  scans.
+
+### Monitor and Manage Query Costs
+
+- **Set up cost controls** at the dataset or project level to prevent budget overruns.
+- **Review the Query Plan** to understand how BigQuery executes your query and identifies potential optimizations.
+
+## 3. Performance Tuning
+
+### Smart Materialization
+
+- **Materialize intermediate results** in temporary tables for complex multi-step queries. It can save processing time
+  and costs for repeated operations.
+
+### Optimize Joins
+
+- **Use the right join strategy**: BigQuery automatically selects a join strategy, but you can influence this with the
+  structure of your query.
+- **Reduce data before joining**: Filter or aggregate data prior to joining to minimize the amount of data being
+  processed.
+
+### Query Caching
+
+- **Leverage query caching**: Repeated queries return cached results for quick retrieval, provided the underlying data
+  hasn't changed. Note that this doesn't apply when using non-deterministic functions like `NOW()`.
+
+## 4. Efficient Data Loading and Storage
+
+### Use the Right Data Formats
+
+- **Prefer Parquet and ORC** for efficient storage and faster queries, especially for complex nested data structures.
+
+### Batch Data Loading
+
+- **Load data in large batches** rather than streaming for cost efficiency. Streaming data is powerful for real-time
+  needs but comes at a higher cost.
+
+### Optimize Storage
+
+- **Regularly clean up old data** with partition expiration settings to manage storage costs.
+- **Compress and deduplicate data** where possible to reduce storage volume.
+
+---
+
+These tips have been game-changers in my work with BigQuery, helping to manage large datasets efficiently while keeping
+costs in check. Always keep exploring and testing; BigQuery is continuously evolving, offering new ways to optimize data
+processing and analytics.

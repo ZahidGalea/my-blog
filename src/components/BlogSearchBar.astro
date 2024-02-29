@@ -1,0 +1,8 @@
+---
+import Search from './Search';
+let {allPosts} = Astro.props;
+const posts = allPosts.filter((post) => !post.frontmatter.draft && post.frontmatter.title);
+console.log(posts);
+---
+
+<Search client:load searchList={posts}/>

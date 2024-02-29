@@ -17,9 +17,7 @@ const {post}: any = Astro.props;
 ---
 
 <BaseLayout pageTitle={post.frontmatter.title}>
-    <div class="pb-12 mx-auto max-w-3xl prose prose-md prose-headings:font-bold prose-a:text-blue-600">
-        <h2 class="text-center text-5xl pt-12 pb-3">{post.frontmatter.title}</h2>
-        <p class="text-center text-lg text-gray-600 pb-4">{post.frontmatter.description}</p>
+    <div class="pb-12 mx-auto max-w-3xl prose mt-20 prose-md dark:prose-invert dark:prose-h1:text-theme-2 dark:prose-h2:text-theme-3 prose-headings:font-bold prose-a:text-theme-4">
         <post.Content/>
     </div>
 </BaseLayout>

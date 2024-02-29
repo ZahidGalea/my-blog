@@ -1,0 +1,210 @@
+[
+  {
+    "title": "Airbyte",
+    "description": "Tool (GUI) to automate integrations from sources to datawarehouses or other destinations",
+    "tags": [
+      "ELT",
+      "Integrations",
+      "Data Engineer",
+      "Data Architect",
+      "Tools"
+    ],
+    "url": "https://airbyte.com/",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Delta Lake",
+    "description": "An open-source project that provides ACID transactions to Apache Spark™ and big data storage systems.",
+    "tags": [
+      "Data Lake",
+      "ACID Transactions",
+      "Apache Spark",
+      "Open Source",
+      "Big Data"
+    ],
+    "url": "https://delta.io/",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Databricks Photon",
+    "description": "A vectorized query processing engine developed by Databricks for faster Spark query execution.",
+    "tags": [
+      "Query Engine",
+      "Databricks",
+      "Photon",
+      "Spark",
+      "Performance"
+    ],
+    "url": "https://www.databricks.com/product/photon",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Feast",
+    "description": "A feature store for machine learning, enabling easy storage, access, and management of ML features.",
+    "tags": [
+      "Feature Store",
+      "Machine Learning",
+      "Data Management",
+      "Open Source",
+      "ML Engineering"
+    ],
+    "url": "https://feast.dev/",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Cube.js",
+    "description": "An open-source framework for building data analytics applications, providing a data abstraction layer for building dashboards and data exploration.",
+    "tags": [
+      "Analytics",
+      "Data Visualization",
+      "Open Source",
+      "Data Framework",
+      "Dashboards"
+    ],
+    "url": "https://cube.dev/",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Databend",
+    "description": "A modern real-time data warehouse for cloud analytics, designed for high performance, flexibility, and ease of use with an open-source approach.",
+    "tags": [
+      "Data Warehouse",
+      "Real-Time",
+      "Cloud Analytics",
+      "Open Source",
+      "Big Data"
+    ],
+    "url": "https://github.com/datafuselabs/databend",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Dagger",
+    "description": "A CI/CD automation platform designed for developers, making it easier to build, test, and deploy software efficiently.",
+    "tags": [
+      "CI/CD",
+      "Automation",
+      "Development",
+      "DevOps",
+      "Software Engineering"
+    ],
+    "url": "https://dagger.io/",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Streamlit",
+    "description": "A framework for rapidly creating data applications in Python, ideal for machine learning and data prototyping.",
+    "tags": [
+      "Data Science",
+      "Machine Learning",
+      "Python",
+      "Data Applications",
+      "Prototyping"
+    ],
+    "url": "https://streamlit.io/",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Digital Maturity Benchmark by Google Cloud",
+    "description": "A Google-offered assessment tool to help organizations measure their digital and cloud maturity.",
+    "tags": [
+      "Digital Maturity",
+      "Cloud Computing",
+      "Benchmarking",
+      "Google Cloud",
+      "Assessment Tool"
+    ],
+    "url": "https://digitalmaturitybenchmark.withgoogle.com/cloud/createsurvey/",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Machine Learning Glossary by Google",
+    "description": "A comprehensive resource defining key terms and concepts in the field of machine learning.",
+    "tags": [
+      "Machine Learning",
+      "Glossary",
+      "Google",
+      "Education",
+      "ML Concepts"
+    ],
+    "url": "https://developers.google.com/machine-learning/glossary?hl=es-419",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Datafold",
+    "description": "A data engineering tool offering automated testing and quality control for data development.",
+    "tags": [
+      "Data Engineering",
+      "Testing",
+      "Quality Control",
+      "Data Development",
+      "Automation"
+    ],
+    "url": "https://docs.datafold.com/development_testing/open_source",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "DataHub",
+    "description": "An open-source metadata catalog system for enterprise data management, aiding in better understanding, managing, and utilization of data.",
+    "tags": [
+      "Data Management",
+      "Metadata Catalog",
+      "Open Source",
+      "Enterprise Data",
+      "DataHub"
+    ],
+    "url": "https://datahubproject.io/",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Databand",
+    "description": "A data observability platform offering monitoring, alerts, and visibility for data pipelines and ETL processes.",
+    "tags": [
+      "Data Observability",
+      "Monitoring",
+      "Alerts",
+      "ETL",
+      "Data Pipelines"
+    ],
+    "url": "https://databand.ai/",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "dbt (Data Build Tool)",
+    "description": "A data transformation tool that enables data teams to model, test, and deploy analytical data with software engineering practices.",
+    "tags": [
+      "Data Transformation",
+      "Analytics",
+      "Software Engineering",
+      "Data Modeling",
+      "dbt"
+    ],
+    "url": "https://www.getdbt.com/",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Apache Hudi",
+    "description": "Provides data storage capabilities that enable complex data lake operations such as upserts, incremental updates, and deletes on large datasets in Hadoop ecosystems.",
+    "tags": [
+      "Data Storage",
+      "Hadoop",
+      "Upserts",
+      "Incremental Updates",
+      "Apache Hudi"
+    ],
+    "url": "https://hudi.apache.org/",
+    "date": "2024-02-29"
+  },
+  {
+    "title": "Apache Iceberg",
+    "description": "An open-source table format for huge datasets on distributed file systems, providing features like schema evolution, hidden partitioning, and snapshotting.",
+    "tags": [
+      "Table Format",
+      "Big Data",
+      "Schema Evolution",
+      "Apache Iceberg",
+      "Data Lake"
+    ],
+    "url": "https://iceberg.apache.org/",
+    "date": "2024-02-29"
+  }
+]

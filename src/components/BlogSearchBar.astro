@@ -1,8 +1,7 @@
 ---
-import Search from './Search';
+import BlogSearch from './BlogSearch';
 let {allPosts} = Astro.props;
 const posts = allPosts.filter((post) => !post.frontmatter.draft && post.frontmatter.title);
-console.log(posts);
 ---
 
-<Search client:load searchList={posts}/>
+<BlogSearch client:load searchList={posts}/>

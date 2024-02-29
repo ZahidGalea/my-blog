@@ -5,8 +5,6 @@
     "tags": [
       "ELT",
       "Integrations",
-      "Data Engineer",
-      "Data Architect",
       "Tools"
     ],
     "url": "https://airbyte.com/",
@@ -107,11 +105,9 @@
     "title": "Digital Maturity Benchmark by Google Cloud",
     "description": "A Google-offered assessment tool to help organizations measure their digital and cloud maturity.",
     "tags": [
-      "Digital Maturity",
+      "Study Material",
       "Cloud Computing",
-      "Benchmarking",
-      "Google Cloud",
-      "Assessment Tool"
+      "Google Cloud"
     ],
     "url": "https://digitalmaturitybenchmark.withgoogle.com/cloud/createsurvey/",
     "date": "2024-02-29"
@@ -189,7 +185,9 @@
       "Hadoop",
       "Upserts",
       "Incremental Updates",
-      "Apache Hudi"
+      "Apache Hudi",
+      "Table Format",
+      "Data Lake"
     ],
     "url": "https://hudi.apache.org/",
     "date": "2024-02-29"
@@ -200,7 +198,6 @@
     "tags": [
       "Table Format",
       "Big Data",
-      "Schema Evolution",
       "Apache Iceberg",
       "Data Lake"
     ],

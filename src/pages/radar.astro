@@ -1,15 +1,15 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 const pageTitle = "Technology Radar";
-import datos from './radar.json';
-import RadarSearchByTitle from "../components/RadarSearchByTitle";
+import datos from './radar/radar.json';
+import RadarSearch from "../components/RadarSearch";
 ---
 
 <BaseLayout pageTitle={pageTitle}>
     <div class="flex flex-col md:flex-row items-center max-w-3xl p-2 mb-5 mt-5 mx-auto">
         <h1 class="text-5xl mb-4 md:mb-0 md:mr-4">{pageTitle}</h1>
     </div>
-    <RadarSearchByTitle datos={datos} client:load />
+    <RadarSearch datos={datos}/>
     <div class="max-w-4xl mx-auto divide-y divide-gray-200">
         {datos.map((item) => (
                 <div class="py-4">

@@ -7,7 +7,6 @@ interface Props {
 
 const StringDate: React.FC<Props> = ({date}) => {
     let dateObject = new Date(date);
-
     return (
         <time dateTime={dateObject.toISOString()}>
             {dateObject.toLocaleDateString('en-us', {

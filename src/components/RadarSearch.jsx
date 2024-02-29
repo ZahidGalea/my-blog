@@ -9,7 +9,7 @@ const options = {
 };
 
 
-function RadarSearchByTitle({datos}) {
+function RadarSearch({datos}) {
     const fuse = new Fuse(datos, options);
     const [technologies, setTechnologies] = useState([]);
     const [query, setQuery] = useState('');
@@ -52,7 +52,7 @@ function RadarSearchByTitle({datos}) {
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="icon icon-tabler icon-tabler-search"
+                        className="icon icon-tabler icon-tabler-search dark:text-theme-3"
                         width={24}
                         height={24}
                         viewBox="0 0 24 24"
@@ -88,8 +88,8 @@ function RadarSearchByTitle({datos}) {
                                rounded-lg bg-gray-50
                                focus:outline-none
                                focus:ring-blue-500
-                               focus:border-blue-500" onChange={handleOnTagChange} value={selectedTag}>
-                    <option value="">Select a tag...</option>
+                               focus:border-blue-500 ml-1" onChange={handleOnTagChange} value={selectedTag}>
+                    <option className="text-gray-900" value="">Select a tag...</option>
                     {uniqueTags.map(tag => (
                         <option key={tag} value={tag}>{tag}</option>
                     ))}
@@ -117,4 +117,4 @@ function RadarSearchByTitle({datos}) {
     );
 }
 
-export default RadarSearchByTitle;
+export default RadarSearch;

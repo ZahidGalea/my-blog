@@ -13,26 +13,42 @@ function RadarSearchByTitle({datos}) {
     const fuse = new Fuse(datos, options);
     const [technologies, setTechnologies] = useState([]);
     const [query, setQuery] = useState('');
+    const [selectedTag, setSelectedTag] = useState('');
 
     function handleOnSearch({target = {}}) {
-        console.log(target)
         const {value} = target;
         setQuery(value);
-        const filteredData = value.trim() ? fuse
-            .search(value)
-            .map(result => result.item)
-            .slice(0, 10) : datos; // Si no hay consulta, vuelve a los posts iniciales
-
-        setTechnologies(filteredData); // Actualiza el estado de posts con los filtrados o los iniciales
+        updateFilteredData(value, selectedTag);
     }
+
+    function handleOnTagChange(event) { // Manejador para el cambio de tag seleccionado
+        const newTag = event.target.value;
+        setSelectedTag(newTag);
+        updateFilteredData(query, newTag);
+    }
+
+    function updateFilteredData(searchValue, tag) {
+        let filteredData = datos;
+
+        if (searchValue.trim()) {
+            filteredData = fuse
+                .search(searchValue)
+                .map(result => result.item);
+        }
+
+        if (tag) {
+            filteredData = filteredData.filter(item => item.tags.includes(tag));
+        }
+
+        setTechnologies(filteredData.slice(0, 10)); // Limitar los resultados a los primeros 10
+    }
+
+    const uniqueTags = Array.from(new Set(datos.flatMap(item => item.tags)));
 
 
     return (
         <div>
-            <label htmlFor="searchRadar" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">
-                Search Radar
-            </label>
-            <div className="relative">
+            <div className="relative flex flex-row">
                 <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
@@ -65,6 +81,19 @@ function RadarSearchByTitle({datos}) {
                                focus:border-blue-500"
                     placeholder="Look for a technology by name or description..."
                 />
+                {/* Selector de Tags */}
+                <select className="block p-4 text-sm 
+                                text-gray-900 
+                               border border-gray-300
+                               rounded-lg bg-gray-50
+                               focus:outline-none
+                               focus:ring-blue-500
+                               focus:border-blue-500" onChange={handleOnTagChange} value={selectedTag}>
+                    <option value="">Select a tag...</option>
+                    {uniqueTags.map(tag => (
+                        <option key={tag} value={tag}>{tag}</option>
+                    ))}
+                </select>
             </div>
 
             {technologies.length > 0 && (

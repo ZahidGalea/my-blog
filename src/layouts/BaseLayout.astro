@@ -4,6 +4,7 @@ import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 
 const {pageTitle} = Astro.props;
+import SpeedInsights from "@vercel/speed-insights/astro"
 ---
 
 <html lang="en">
@@ -16,6 +17,7 @@ const {pageTitle} = Astro.props;
     <title>{pageTitle}</title>
 </head>
 <body>
+<SpeedInsights/>
 <Header/>
 <!-- Here will come the code inserted from the pages-->
 <div class="mb-10">

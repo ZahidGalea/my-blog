@@ -1,4 +1,42 @@
-[
+[  {
+    "title": "CrewAI",
+    "description": "Cutting-edge framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks",
+    "tags": [
+      "IA Gen",
+      "Framework",
+      "LLM",
+      "RAG",
+      "IA Agents"
+    ],
+    "url": "https://www.crewai.io/",
+    "date": "2024-03-01"
+  },
+  {
+    "title": "LangChain",
+    "description": "ramework for developing applications powered by language models",
+    "tags": [
+      "IA Gen",
+      "Framework",
+      "LLM",
+      "RAG",
+      "IA Agents"
+    ],
+    "url": "https://www.langchain.com/langchain",
+    "date": "2024-03-01"
+  },
+  {
+    "title": "LLamaIndex",
+    "description": "Simple, flexible data framework for connecting custom data sources to large language models (LLMs)",
+    "tags": [
+      "IA Gen",
+      "Framework",
+      "LLM",
+      "RAG",
+      "IA Agents"
+    ],
+    "url": "https://www.llamaindex.ai/",
+    "date": "2024-03-01"
+  },
   {
     "title": "Airbyte",
     "description": "Tool (GUI) to automate integrations from sources to datawarehouses or other destinations",

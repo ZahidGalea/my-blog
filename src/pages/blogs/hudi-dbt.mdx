@@ -1,0 +1,85 @@
+---
+title: 'Apache Hudi with DBT local'
+slug: hudi-dbt-local
+pubDate: 2024-02-02
+description: 'Tips and runbook to setup Apache Hudi with DBT locally.'
+author: 'Zahid Galea'
+tags: [ "Data Engineering", "Delta Lake", "DBT", "Apache Hudi", ]
+---
+
+# Apache HUDI with DBT in local docker compose
+
+--- 
+
+![Status](https://img.shields.io/badge/%20Status-WIP-orange)
+
+GitHub link: https://github.com/ZahidGalea/dbt-hudi-lake
+
+---
+
+### Checkmarks
+
+* [x] Base docker compose configuration
+* [x] PostgreSQL with Hive metastore configuration 
+* [x] Apache Hudi with Spark Thrift Server configuration 
+* [x] DBT with connection to Spark Thrift Server and test model 
+* [ ] Elementary integration 
+* [ ] Run Book documentation
+
+
+## Introduction
+This blog talks about the Proof of Concept (PoC) implemented to demonstrate the integration and functioning of Apache Hudi, DBT (Data Build Tool), and Elementary within a data processing environment. The aim is to assess the efficiency, scalability, and data quality management achievable by leveraging these technologies together.
+
+In resume the steps are:
+
+* Set up a apache hive database
+* Set up apache thrift with hudi configuration
+* Set up DBT with connection to Spark Thrift Server and test model
+* Execute a binance scrapping python
+* Create the models using DBT plus SQL reading files in JSON format
+* Check the execution using Elementary as observability tool
+
+## Technology Description
+* **DBT (Data Build Tool)**: A data transformation tool that enables data teams to model and transform data in their data warehouse. It uses SQL for transformations and integrates with version control systems to maintain a change history and facilitate collaboration.
+
+* **Apache Hudi**: A storage layer that brings ACID transactions, scalability, and reliability to data storage systems in a data lake format. It supports concurrent read and write operations, ensuring data integrity.
+
+* **Spark Thrift Server**: Provides a JDBC/ODBC interface that allows external applications to connect to Spark SQL using standard protocols. It facilitates interoperability and access to data processed by Spark.
+
+* **Hive Metastore in PostgreSQL**: The Hive Metastore stores table and partition metadata in a relational data store, in this case, PostgreSQL. This enables efficient and scalable management of metadata, crucial for complex data operations.
+
+##  If you want to replicate, there are some snippets / recommendations:
+
+* Set spark thright configurations correctly and remember the HoodieSparkSessionExtension
+```
+spark.driver.memory 2g
+spark.executor.memory 2g
+spark.hadoop.datanucleus.autoCreateTables	true
+spark.hadoop.datanucleus.schema.autoCreateTables	true
+spark.hadoop.datanucleus.fixedDatastore 	false
+spark.serializer	org.apache.spark.serializer.KryoSerializer
+spark.jars.packages	org.apache.hudi:hudi-spark3-bundle_2.12:0.14.0
+spark.sql.extensions	org.apache.spark.sql.hudi.HoodieSparkSessionExtension
+spark.driver.userClassPathFirst true
+```
+
+* In DBT profiles, the method must be set on thrift
+```yaml
+local:
+  target: dev
+  outputs:
+    dev:
+      type: spark
+      method: thrift
+      schema: default
+      host: spark3-thrift
+      port: 10000
+```
+
+* You can query json directly from thrift, like this:
+```sql
+SELECT *
+FROM json.`file:///spark-warehouse/landing/feed_recommend_2024_02_09_15_05_02.json`;
+```
+
+

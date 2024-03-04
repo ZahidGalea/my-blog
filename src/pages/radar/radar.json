@@ -1,4 +1,15 @@
 [  {
+    "title": "FastUI",
+    "description": "FastUI is a new way to build web application user interfaces defined by declarative Python code",
+    "tags": [
+      "Fullstack",
+      "Framework",
+      "UI",
+      "Python",
+    ],
+    "url": "https://www.crewai.io/",
+    "date": "2024-03-01"
+  },{
     "title": "CrewAI",
     "description": "Cutting-edge framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks",
     "tags": [

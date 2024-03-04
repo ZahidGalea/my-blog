@@ -1,14 +1,24 @@
 [  {
+    "title": "schreenshot-to-code",
+    "description": "This simple app converts a screenshot to code (HTML/Tailwind CSS, or React or Bootstrap or Vue). It uses GPT-4 Vision to generate the code and DALL-E 3 to generate similar-looking images. You can now also enter a URL to clone a live website!\n\n",
+    "tags": [
+      "Fullstack",
+      "IA Gen",
+      "Tools"
+    ],
+    "url": "https://github.com/pydantic/FastUI",
+    "date": "2024-03-04"
+  },{
     "title": "FastUI",
     "description": "FastUI is a new way to build web application user interfaces defined by declarative Python code",
     "tags": [
       "Fullstack",
       "Framework",
       "UI",
-      "Python",
+      "Python"
     ],
-    "url": "https://www.crewai.io/",
-    "date": "2024-03-01"
+    "url": "https://github.com/pydantic/FastUI",
+    "date": "2024-03-04"
   },{
     "title": "CrewAI",
     "description": "Cutting-edge framework for orchestrating role-playing, autonomous AI agents. By fostering collaborative intelligence, CrewAI empowers agents to work together seamlessly, tackling complex tasks",
@@ -156,7 +166,8 @@
     "tags": [
       "Study Material",
       "Cloud Computing",
-      "Google Cloud"
+      "Google Cloud",
+      "Tools"
     ],
     "url": "https://digitalmaturitybenchmark.withgoogle.com/cloud/createsurvey/",
     "date": "2024-02-29"
@@ -182,7 +193,8 @@
       "Testing",
       "Quality Control",
       "Data Development",
-      "Automation"
+      "Automation",
+      "Tools"
     ],
     "url": "https://docs.datafold.com/development_testing/open_source",
     "date": "2024-02-29"
@@ -221,7 +233,8 @@
       "Analytics",
       "Software Engineering",
       "Data Modeling",
-      "dbt"
+      "dbt",
+      "Tools"
     ],
     "url": "https://www.getdbt.com/",
     "date": "2024-02-29"

@@ -91,7 +91,30 @@ commands =
 
 1) Install Tox in your development environment: pip install tox
 2) Create a tox.ini file in the root of your project and configure the sections according to your needs.
-3) Run Tox to perform the defined tasks: tox
+3) Run Tox to perform the defined tasks: 
+    ```bash
+    tox # To run everything
+    tox -e pytest # To run only the pytest environment
+    tox -e format # To run only the format environment
+    ```
+4) Pass arguments to the commands using the posargs placeholder, for example:
+    ```ini
+    [testenv:pytest]
+    description = run unit tests
+    deps =
+        pytest
+        coverage
+        -r src/{posargs}/requirements.txt
+    commands =
+        coverage run -m pytest tests/test_{posargs}.py
+        coverage xml -o {posargs}_coverage.xml
+    ```
+    ```bash
+    tox -e pytest -- lambda_folder
+    ```
+
+
+When you run Tox, it will create virtual environments for each specified Python version and execute the commands defined in the corresponding sections. This allows you to ensure that your code works across different Python versions and environments.
 
 Tox will automatically create the necessary virtual environments, install the specified dependencies, and execute the commands defined in each section.
 

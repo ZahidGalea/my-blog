@@ -9,11 +9,12 @@ import vercel from '@astrojs/vercel/serverless';
 
 import react from "@astrojs/react";
 import mdx from "@astrojs/mdx";
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
     site: "https://zahidgalea.com",
-    integrations: [tailwind(), react(), mdx()],
+    integrations: [tailwind(), react(), mdx(), sitemap()],
     markdown: {
         remarkPlugins: [remarkGfm, remarkFrontmatter],
         rehypePlugins: [

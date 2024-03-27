@@ -13,27 +13,225 @@ const experiences = [
     {
         company: "ACID Labs",
         position: "Lead of Data Engineering",
-        description: "Lead Data Engineer responsibilities including Pre-Sales, architecture, and more."
-    },
-    {
-        company: "KAVAK",
-        position: "Senior Software Engineer",
-        description: "Software Engineer for the global data platform Architecture team."
+        description: "Lead Data Engineer responsibilities including Pre-Sales, architecture, and more.",
+        projects: [
+            {
+                name: "Pre-Sales & Lead Data Engineer",
+                description: "Pre-sales meeting with a variety of clients, architecture design, etc. Data Engineers and Architects learning paths creation, GCP certification lead, Interviews, Tech Team building lead, and more.",
+            },
+            {
+                name: "AWS Infrastructure Dev & DevOps",
+                description: "Support to deploy infrastructure for a statistical model, corporation alignment, CI/CD pipelines building",
+                technologies: [
+                    {
+                        name: "AWS",
+                        objective: "IA Gen model used for the chatbot"
+                    },
+                    {
+                        name: "Github Actions",
+                        objective: "Chat history saving, operational model, also usage of fuzzy search and PGVector"
+                    },
+                ]
+            },
+            {
+                name: "Digital Seller PoC (PoC competition won)",
+                description: "Digital seller who searched for products, identified, verified and assembled shopping carts",
+                technologies: [
+                    {
+                        name: "PostgreSQL",
+                        objective: "Chat history saving, operational model, also usage of fuzzy search and PGVector"
+                    },
+                    {
+                        name: "Earthly",
+                        objective: "Build and deployment automation"
+                    },
+                    {
+                        name: "Python",
+                        objective: "Backend with FastAPI"
+                    },
+                    {
+                        name: "React",
+                        objective: "Front end, chat interface, client's selection, etc."
+                    },
+                ]
+            },
+            {
+                name: "RAG Chatbot for legal documentation",
+                description: "Rag system powered with IA Gen and vector search",
+                technologies: [
+                    {
+                        name: "LlamaIndex",
+                        objective: "Framework for RAG and IA Gen systems written in python"
+                    },
+                    {
+                        name: "Streamlit",
+                        objective: "Frontend written in python "
+                    },
+                    {
+                        name: "Pinecone",
+                        objective: "SaS Vector Database"
+                    },
+                    {
+                        name: "Kubernetes",
+                    }
+                ]
+            },
+            {
+                name: "Slack RAG Chatbot",
+                description: "Rag system powered with IA Gen and vector search for Slack interaction",
+                technologies: [
+                    {
+                        name: "LlamaIndex",
+                        objective: "Framework for RAG and IA Gen systems written in python"
+                    },
+                    {
+                        name: "ChromaDB",
+                        objective: "Vector database"
+                    },
+                    {
+                        name: "Kubernetes",
+                    }
+                ]
+            },
+        ]
     },
     {
         company: "ACID Labs",
         position: "Senior Data Engineer",
-        description: "Data Developer in a POD, assigned to a logistic and supply chain area of the company. "
+        description: "Data Dev, assigned to an operational and supply chain area of the company.",
+        projects: [
+            {
+                name: "Data Engineer & Architect",
+                description: "Migration from pipelines on notebooks to Bigquery. Creation of Infrastructure in Kubernetes, CI/CD Pipelines, Operation Model Design.",
+                technologies: [
+                    {
+                        name: "Bigquery",
+                    },
+                    {
+                        name: "Kubernetes",
+                    },
+                    {
+                        name: "DBT",
+                        objective: "as ELT orchestration tool"
+                    },
+                    {
+                        name: "Python",
+                    },
+                ]
+            },
+        ]
+    },
+    {
+        company: "KAVAK",
+        position: "Senior Software Engineer",
+        description: "Software Engineer for the global data platform Architecture team.",
+        projects: [
+            {
+                name: "Tableau Users administration Process",
+                description: "Created a system to automate the process of Tableau users administration usen Gitlab CI/CD and configuration files",
+                technologies: [
+                    {
+                        name: "Tableau",
+                        objective: "Company visualization tool"
+                    },
+                    {
+                        name: "Gitlab CI/CD",
+                        objective: "Versioning & Deployment automation"
+                    },
+                    {
+                        name: "Python",
+                    },
+                ]
+            },
+            {
+                name: "Migration of Glue Jobs to ECS",
+                description: "Migration of Glue Jobs to ECS to reduce costs and improve performance, framework and deployment automation",
+                technologies: [
+                    {
+                        name: "AWS Glue",
+                        objective: "ETL Infrastructure with Spark"
+                    },
+                    {
+                        name: "Gitlab CI/CD",
+                        objective: "Versioning & Deployment automation"
+                    },
+                    {
+                        name: "Python",
+                    },
+                    {
+                        name: "Docker",
+                    },
+                ]
+            }, {
+                name: "Small Files compaction Job",
+                description: "Glue Job Design and deployment to compact parquet small files in S3 to improve performance and reduce costs on Athena and redshift spectrum queries",
+                technologies: [
+                    {
+                        name: "Delta",
+                        objective: "Delta Lake open source format"
+                    },
+                    {
+                        name: "AWS Glue",
+                        objective: "ETL Infrastructure with Spark"
+                    },
+                    {
+                        name: "Python",
+                    },
+                ]
+            },
+        ]
     },
     {
         company: "Kibernum",
         position: "Cloud Data Engineer",
-        description: "Cloud Data Engineer specialized on Google Cloud Platform"
+        description: "Cloud Data Engineer specialized on Google Cloud Platform",
+        projects: [
+            {
+                name: "Data Modeling & Integrations",
+                description: "Creation of K8s cron jobs for movement of SFTP Files and API integrations to Bigquery. Also creation of Data Marts models",
+                technologies: [
+                    {
+                        name: "Bigquery",
+                        objective: "Data Warehouse"
+                    },
+                    {
+                        name: "Kubernetes",
+                        objective: "Container Orchestration"
+                    },
+                    {
+                        name: "Airflow",
+                        objective: "as ELT orchestration tool"
+                    },
+                    {
+                        name: "Python",
+                    },
+                ]
+            },
+        ]
     },
     {
         company: "PwC",
         position: "Associate Junior",
-        description: "Associate on the Center of Artificial Intelligence of PwC Chile."
+        description: "Associate on the Center of Artificial Intelligence of PwC Chile.",
+        projects: [
+            {
+                name: "Data Modeling & Framework Creation",
+                description: "Creation of a Framework to automate Airflow DAG's creation for non technical users with YAML files, also creation of Data Marts models",
+                technologies: [
+                    {
+                        name: "Bigquery",
+                        objective: "Data Warehouse"
+                    },
+                    {
+                        name: "Airflow",
+                        objective: "as ELT orchestration tool"
+                    },
+                    {
+                        name: "Python",
+                    },
+                ]
+            },
+        ]
     }
 ]
 ---
@@ -48,8 +246,8 @@ const experiences = [
     </div>
     <div class="font-sans leading-normal tracking-normal">
         <div class="container mx-auto p-5">
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/3">
+            <div class="flex flex-col md:flex-col">
+                <div class="w-full">
                     <div class="p-6">
                         <h1 class="text-3xl font-bold mb-2">{identification.name}</h1>
                         <p class="mb-4">{identification.birthdate}</p>
@@ -58,40 +256,73 @@ const experiences = [
                         <a href="mailto:zahidale.zg@gmail.com" class="text-blue-500">{identification.mail}</a>
                     </div>
                 </div>
-                <div class="md:w-2/3">
+                <div class="w-full">
                     <div class="p-6">
-                        <h2 class="text-2xl font-bold mb-3">Resume</h2>
+                        <h1 class="text-3xl font-bold mb-3  text-center pt-1">Resume</h1>
                         <p class="mb-5">I am a lover of technology, innovation and how it can impact the world. I am a
                             faithful believer and promoter of reinvention, creativity, and continuous improvement.
                         </p>
-                        <h2 class="text-2xl font-bold mb-3">Professional Experience</h2>
-                        <div class="grid md:grid-cols-2 gap-4 mb-5">
-                            {experiences.map((experience) => (
+                        <h2 class="text-3xl font-bold mb-3 text-center pt-5">Professional Experience</h2>
+                        <div class="grid md:grid-cols-1 gap-4 mb-5">
+                            {experiences.map((experience, index) => (
                                     <div>
-                                        <h3 class="font-bold">{experience.company} — {experience.position}</h3>
-                                        <ul class="list-disc ml-5">
-                                            <li>{experience.description}</li>
-                                        </ul>
+                                        <h3 class="text-2xl font-bold">{experience.company} — {experience.position}</h3>
+                                        {experience.description}
+
+                                        {experience.projects && experience.projects.length > 0 && (
+                                                <div class=" mt-4">
+                                                    {experience.projects.map((project) => (
+                                                            <div class="mb-4 ">
+                                                                <h5 class="font-bold">{project.name}</h5>
+                                                                <p class="pl-5 italic">{project.description}</p>
+                                                                <ul class="pl-5 list-disc ml-5">
+                                                                    {project.technologies && project.technologies.length > 0 && (
+                                                                            <div>
+                                                                                <h1 class="text-1xl font-bold m-2">
+                                                                                    Technologies:</h1>
+                                                                                <ul class="list-disc ml-5">
+                                                                                    {project.technologies.map((tech) => (
+                                                                                            <li> {tech.name}
+                                                                                                {tech.objective && " - "}
+                                                                                                {tech.objective}</li>
+                                                                                    ))}
+                                                                                </ul>
+                                                                            </div>
+                                                                    )}
+
+                                                                </ul>
+                                                            </div>
+                                                    ))}
+                                                </div>
+                                        )}
+                                        {index < experiences.length - 1 && (
+                                                <hr class="my-6 border-t border-gray-300"/>
+                                        )}
                                     </div>
+
                             ))}
                         </div>
 
-                        <h2 class="text-2xl font-bold mb-3">Professional Certifications</h2>
+                        <h2 class="text-3xl font-bold mb-3  text-center pt-5">Professional Certifications</h2>
                         <ul class="list-disc ml-5 mb-5">
-                            <li><a href="https://google.accredible.com/6df3e512-380a-4670-b1ff-177e304e6d3a" target="_blank">Google
-                                Cloud Certified - Professional Data Engineer. Sep 2023 - Sep 2025</a> 
+                            <li><a href="https://google.accredible.com/6df3e512-380a-4670-b1ff-177e304e6d3a"
+                                   target="_blank">Google
+                                Cloud Certified - Professional Data Engineer. Sep 2023 - Sep 2025</a>
                             </li>
 
                         </ul>
 
-                        <h2 class="text-2xl font-bold mb-3">Studies</h2>
+                        <h2 class="text-3xl font-bold mb-3  text-center pt-5">Studies</h2>
                         <ul class="list-disc ml-5 mb-5">
                             <li>DUOC UC, Providencia — Informatics Engineering. February 2020</li>
                             <!-- More studies can be added here -->
                         </ul>
 
-                        <h2 class="text-2xl font-bold mb-3">Language</h2>
-                        <p class="mb-5">Intermediate English B1.</p>
+                        <h2 class="text-3xl font-bold mb-3 text-center pt-5">Language</h2>
+                        <ul class="list-disc ml-5 mb-5">
+                            <li>Intermediate English B1.</li>
+                            <li>Native Spanish.</li>
+                        </ul>
 
                     </div>
                 </div>

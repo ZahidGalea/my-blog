@@ -1,5 +1,35 @@
 [
   {
+    "title": "Vanna",
+    "description": "an open-source Python retrieval-augmented generation (RAG) framework for SQL generation.",
+    "tags": [
+      "AI Gen",
+      "Tools"
+    ],
+    "url": "https://github.com/vanna-ai/vanna",
+    "date": "2024-04-17"
+  },
+  {
+    "title": "Langfuse",
+    "description": "Open Source LLM Engineering Platform. Traces, evals, prompt management and metrics to debug and improve your LLM application.",
+    "tags": [
+      "AI Gen",
+      "Tools"
+    ],
+    "url": "https://langfuse.com/",
+    "date": "2024-04-17"
+  },
+  {
+    "title": "Weights & Biases",
+    "description": "Build models faster, fine-tune LLMs, develop GenAI applications with confidence, all in one system of record developers are excited to use.",
+    "tags": [
+      "Machine Learning",
+      "Tools"
+    ],
+    "url": "https://wandb.ai/site",
+    "date": "2024-04-17"
+  },
+  {
     "title": "stitionai/devika",
     "description": "Devika is an Agentic AI Software Engineer that can understand high-level human instructions, break them down into steps, research relevant information, and write code to achieve the given objective. Devika aims to be a competitive open-source alternative to Devin by Cognition AI.",
     "tags": [

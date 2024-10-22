@@ -14,13 +14,16 @@ import sitemap from '@astrojs/sitemap';
 // https://astro.build/config
 export default defineConfig({
     site: "https://zahidgalea.com",
-    integrations: [tailwind(), react(), mdx(), sitemap()],
+    integrations: [tailwind({
+        applyBaseStyles: false,
+    }), react(), mdx(), sitemap()],
     markdown: {
         remarkPlugins: [remarkGfm, remarkFrontmatter],
         rehypePlugins: [
             rehypeHeadingIds, rehypeSlug, rehypeAutolinkHeadings
         ],
     },
+
     output: 'server',
     adapter: vercel({
         webAnalytics: {enabled: true}

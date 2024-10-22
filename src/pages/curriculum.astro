@@ -1,7 +1,10 @@
 ---
 import '../styles/global.css';
-const pageTitle = "Zahid Galea - Welcome";
+import {Button} from "@/components/ui/button"
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "Zahid Galea - Welcome";
+
 const identification = {
     name: "Zahid Galea",
     location: "Swieqi, Malta",
@@ -282,13 +285,12 @@ const certifications = [
 ---
 <BaseLayout pageTitle={pageTitle}>
     <div class="flex flex-col md:flex-row items-center justify-center align-middle max-w-3xl p-2 mt-5 mx-auto">
-        <div class="bg-theme-2 p-4 rounded-2xl">
+        <Button>
             <a href="/Zahid Galea - CV English.pdf"
-               download="Zahid Galea - CV English.pdf"
-               class="text-theme-4">Download PDF for more Details</a>
-        </div>
+               download="Zahid Galea - CV English.pdf">Download PDF for more Details</a>
+        </Button>
     </div>
-    <div class="font-sans leading-normal tracking-normal">
+    <div class="leading-normal tracking-normal">
         <div class="container mx-auto p-5">
             <div class="flex flex-col md:flex-col">
                 <div class="w-full">

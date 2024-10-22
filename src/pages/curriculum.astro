@@ -3,244 +3,288 @@ import '../styles/global.css';
 const pageTitle = "Zahid Galea - Welcome";
 import BaseLayout from "../layouts/BaseLayout.astro";
 const identification = {
-    name: "Zahid Alejandro Galea Jorge",
-    birthdate: "15th November 1996",
-    location: "Buenos Aires",
+    name: "Zahid Galea",
+    location: "Swieqi, Malta",
     nationality: "Venezuelan",
-    mail: "zahidale.zg@gmail.com"
+    mail: "zahidale.zg@gmail.com",
+    phone: "+356 9981 7146",
+    linkedin: "linkedin.com/in/zahidgalea"
 }
+
 const experiences = [
     {
         company: "ACID Labs",
         position: "Lead of Data Engineering",
-        description: "Lead Data Engineer responsibilities including Pre-Sales, architecture, and more.",
+        location: "Santiago, Chile (Remote)",
+        period: "April 2023–Present",
+        description: "Data Engineer with 6 years of experience in technology. Specialized in designing and optimizing data solutions, with strong expertise in cloud computing (GCP). Complementary skills in Full Stack development and DataOps. Pioneer in implementing AI Generative practices.",
         projects: [
             {
-                name: "Pre-Sales & Lead Data Engineer",
-                description: "Pre-sales meeting with a variety of clients, architecture design, etc. Data Engineers and Architects learning paths creation, GCP certification lead, Interviews, Tech Team building lead, and more.",
+                name: "Enterprise Data Architecture",
+                description: "Led the development and data architecture of the consultancy's own enterprise data, focusing on NoOps tools specific to the GCP suite.",
+                technologies: [
+                    {
+                        name: "Google Cloud Platform",
+                        objective: "Cloud Functions, Cloud Run, Cloud Storage"
+                    },
+                    {
+                        name: "Dataplex",
+                        objective: "Data governance"
+                    },
+                    {
+                        name: "Dataform",
+                        objective: "ELT processes"
+                    },
+                    {
+                        name: "Looker Studio",
+                        objective: "Visualization"
+                    },
+                    {
+                        name: "Bitbucket Pipelines",
+                        objective: "CI/CD"
+                    },
+                    {
+                        name: "Terraform",
+                        objective: "Infrastructure as Code"
+                    }
+                ]
             },
             {
-                name: "AWS Infrastructure Dev & DevOps",
-                description: "Support to deploy infrastructure for a statistical model, corporation alignment, CI/CD pipelines building, Dev and Deployment of a variety of components like Cognito, Lambda, Dynamo, API Gateways, WAF, S3, etc.",
+                name: "Coca-Cola Chile Logistics Project",
+                description: "Tech lead on a logistics-oriented project for Coca-Cola Chile, aimed at flattening the delivery curve in B2B.",
                 technologies: [
                     {
                         name: "AWS",
                         objective: "Cloud infrastructure"
                     },
                     {
-                        name: "Github Actions",
-                        objective: "CI/CD and versioning"
-                    },
-                ]
-            },
-            {
-                name: "Digital Seller PoC (PoC competition won)",
-                description: "Digital seller who searched for products, identified, verified and assembled shopping carts",
-                technologies: [
-                    {
-                        name: "PostgreSQL",
-                        objective: "Chat history saving, operational model, also usage of fuzzy search and PGVector"
+                        name: "CloudFormation",
+                        objective: "Infrastructure as Code"
                     },
                     {
-                        name: "Earthly",
-                        objective: "Build and deployment automation"
+                        name: "Lambda",
+                        objective: "Serverless computing"
                     },
                     {
-                        name: "Python",
-                        objective: "Backend with FastAPI"
+                        name: "Athena",
+                        objective: "Query service"
                     },
                     {
-                        name: "React",
-                        objective: "Front end, chat interface, client's selection, etc."
-                    },
-                ]
-            },
-            {
-                name: "RAG Chatbot for legal documentation",
-                description: "Rag system powered with IA Gen and vector search",
-                technologies: [
-                    {
-                        name: "LlamaIndex",
-                        objective: "Framework for RAG and IA Gen systems written in python"
-                    },
-                    {
-                        name: "Streamlit",
-                        objective: "Frontend written in python "
-                    },
-                    {
-                        name: "Pinecone",
-                        objective: "SaS Vector Database"
-                    },
-                    {
-                        name: "Kubernetes",
+                        name: "DynamoDB",
+                        objective: "NoSQL database"
                     }
                 ]
             },
             {
-                name: "Slack RAG Chatbot",
-                description: "Rag system powered with IA Gen and vector search for Slack interaction",
+                name: "Leadership & Certification",
+                description: "Led the attainment of 4 certifications as GCP Professional Data Engineer, leading Data Analytics specialization. Consultatively led 20+ data engineers, participated in performance evaluations and career roadmap development.",
+            },
+            {
+                name: "AI Innovation & Pre-sales",
+                description: "Developed multiple POCs in pre-sales and research phases, creating new services within the organization specifically in AI technologies.",
                 technologies: [
                     {
+                        name: "OpenAI",
+                        objective: "AI models"
+                    },
+                    {
+                        name: "Google AI",
+                        objective: "AI models"
+                    },
+                    {
+                        name: "Langraph",
+                        objective: "AI framework"
+                    },
+                    {
                         name: "LlamaIndex",
-                        objective: "Framework for RAG and IA Gen systems written in python"
+                        objective: "AI framework"
                     },
                     {
-                        name: "ChromaDB",
-                        objective: "Vector database"
+                        name: "KSQL",
+                        objective: "Streaming architecture"
                     },
                     {
-                        name: "Kubernetes",
+                        name: "Apache Hudi",
+                        objective: "Lake House technology"
                     }
                 ]
-            },
+            }
         ]
     },
     {
         company: "ACID Labs",
-        position: "Senior Data Engineer",
-        description: "Data Dev, assigned to an operational and supply chain area of the company.",
+        position: "Data Engineer Senior",
+        location: "Santiago, Chile",
+        period: "February 2022–April 2023",
+        description: "Worked with Walmart Chile on data infrastructure modernization and automation.",
         projects: [
             {
-                name: "Data Engineer & Architect",
-                description: "Migration from pipelines on notebooks to Bigquery. Creation of Infrastructure in Kubernetes, CI/CD Pipelines, Operation Model Design.",
+                name: "Data Migration & Architecture",
+                description: "Migrated manual data loading processes from MSSQL Server to automated process using Docker & Kubernetes, moving data to corporate BigQuery. Designed data architecture for operations team.",
                 technologies: [
                     {
-                        name: "Bigquery",
+                        name: "Docker",
+                        objective: "Containerization"
                     },
                     {
                         name: "Kubernetes",
+                        objective: "Container orchestration"
+                    },
+                    {
+                        name: "BigQuery",
+                        objective: "Data warehouse"
+                    },
+                    {
+                        name: "dbt",
+                        objective: "ELT transformations"
+                    },
+                    {
+                        name: "Microsoft Azure",
+                        objective: "Cloud platform"
+                    },
+                    {
+                        name: "Jenkins",
+                        objective: "CI/CD"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        company: "Kavak.com",
+        position: "Senior Software Engineer",
+        location: "Santiago, Chile",
+        period: "October 2022–March 2023",
+        description: "Freelance position focused on automation and optimization.",
+        projects: [
+            {
+                name: "Tableau Access Management",
+                description: "Developed automated GitOps-based system for Tableau access management using CI/CD practices.",
+                technologies: [
+                    {
+                        name: "Tableau API",
+                        objective: "Access control"
+                    },
+                    {
+                        name: "GitOps",
+                        objective: "Infrastructure management"
+                    }
+                ]
+            },
+            {
+                name: "AWS Optimization",
+                description: "Designed and implemented small file compaction processes over CDC S3 Files, improving system performance and reducing costs. Optimized AWS Glue processes.",
+                technologies: [
+                    {
+                        name: "AWS S3",
+                        objective: "Storage"
+                    },
+                    {
+                        name: "AWS Glue",
+                        objective: "ETL service"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        company: "WOM",
+        position: "Data Engineer",
+        location: "Santiago, Chile",
+        period: "October 2020–February 2022",
+        description: "Focus on logistics automation and data warehouse migration.",
+        projects: [
+            {
+                name: "Logistics Automation",
+                description: "Developed automated processes for the logistics department, enhancing operational efficiency.",
+                technologies: [
+                    {
+                        name: "Apache Airflow",
+                        objective: "Process orchestration"
+                    },
+                    {
+                        name: "Cloud Functions",
+                        objective: "Serverless computing"
                     },
                     {
                         name: "DBT",
-                        objective: "as ELT orchestration tool"
-                    },
-                    {
-                        name: "Python",
-                    },
-                ]
-            },
-        ]
-    },
-    {
-        company: "KAVAK",
-        position: "Senior Software Engineer",
-        description: "Software Engineer for the global data platform Architecture team.",
-        projects: [
-            {
-                name: "Tableau Users administration Process",
-                description: "Created a system to automate the process of Tableau users administration usen Gitlab CI/CD and configuration files",
-                technologies: [
-                    {
-                        name: "Tableau",
-                        objective: "Company visualization tool"
-                    },
-                    {
-                        name: "Gitlab CI/CD",
-                        objective: "Versioning & Deployment automation"
-                    },
-                    {
-                        name: "Python",
-                    },
+                        objective: "ELT tool"
+                    }
                 ]
             },
             {
-                name: "Migration of Glue Jobs to ECS",
-                description: "Migration of Glue Jobs to ECS to reduce costs and improve performance, framework and deployment automation",
+                name: "Data Warehouse Migration",
+                description: "Consulted on migration of on-premises data warehouse from Netezza to GCP and IBM DataStage",
                 technologies: [
                     {
-                        name: "AWS Glue",
-                        objective: "ETL Infrastructure with Spark"
+                        name: "GCP",
+                        objective: "Cloud platform"
                     },
                     {
-                        name: "Gitlab CI/CD",
-                        objective: "Versioning & Deployment automation"
+                        name: "IBM DataStage",
+                        objective: "Data integration"
                     },
                     {
-                        name: "Python",
-                    },
-                    {
-                        name: "Docker",
-                    },
+                        name: "Netezza",
+                        objective: "Legacy data warehouse"
+                    }
                 ]
-            }, {
-                name: "Small Files compaction Job",
-                description: "Glue Job Design and deployment to compact parquet small files in S3 to improve performance and reduce costs on Athena and redshift spectrum queries",
-                technologies: [
-                    {
-                        name: "Delta",
-                        objective: "Delta Lake open source format"
-                    },
-                    {
-                        name: "AWS Glue",
-                        objective: "ETL Infrastructure with Spark"
-                    },
-                    {
-                        name: "Python",
-                    },
-                ]
-            },
-        ]
-    },
-    {
-        company: "Kibernum",
-        position: "Cloud Data Engineer",
-        description: "Cloud Data Engineer specialized on Google Cloud Platform",
-        projects: [
-            {
-                name: "Data Modeling & Integrations",
-                description: "Creation of K8s cron jobs for movement of SFTP Files and API integrations to Bigquery. Also creation of Data Marts models",
-                technologies: [
-                    {
-                        name: "Bigquery",
-                        objective: "Data Warehouse"
-                    },
-                    {
-                        name: "Kubernetes",
-                        objective: "Container Orchestration"
-                    },
-                    {
-                        name: "Airflow",
-                        objective: "as ELT orchestration tool"
-                    },
-                    {
-                        name: "Python",
-                    },
-                ]
-            },
-        ]
-    },
-    {
-        company: "PwC",
-        position: "Associate Junior",
-        description: "Associate on the Center of Artificial Intelligence of PwC Chile.",
-        projects: [
-            {
-                name: "Data Modeling & Framework Creation",
-                description: "Creation of a Framework to automate Airflow DAG's creation for non technical users with YAML files, also creation of Data Marts models",
-                technologies: [
-                    {
-                        name: "Bigquery",
-                        objective: "Data Warehouse"
-                    },
-                    {
-                        name: "Airflow",
-                        objective: "as ELT orchestration tool"
-                    },
-                    {
-                        name: "Python",
-                    },
-                ]
-            },
+            }
         ]
     }
-]
+];
+
+const education = [
+    {
+        institution: "Duoc UC",
+        degree: "Engineer's degree, Information Technology",
+        location: "Santiago, Chile",
+        status: "2020 - Unfinished"
+    },
+    {
+        institution: "CaleiSeis Foundation",
+        degree: "Machine Learning Specialization",
+        location: "Santiago, Chile",
+        year: "2018"
+    },
+    {
+        institution: "Desafío Latam",
+        degree: "Fullstack Bootcamp",
+        location: "Santiago, Chile",
+        year: "2018"
+    },
+    {
+        institution: "Universidad Central de Venezuela",
+        degree: "Geography licenciature",
+        location: "Caracas, Venezuela",
+        status: "2015 - Unfinished"
+    }
+];
+
+const languages = [
+    {
+        language: "Spanish",
+        level: "Native"
+    },
+    {
+        language: "English",
+        level: "B2"
+    }
+];
+
+const certifications = [
+    {
+        name: "Google Cloud Certified - Professional Data Engineer",
+        period: "Sep 2023 - Sep 2025",
+        url: "https://google.accredible.com/6df3e512-380a-4670-b1ff-177e304e6d3a"
+    }
+];
 ---
 <BaseLayout pageTitle={pageTitle}>
-    <div class="flex flex-col md:flex-row items-center justify-center align-middle max-w-3xl p-2 mb-5 mt-5 mx-auto">
-        <h1 class="text-5xl mb-4 md:mb-0 md:mr-4">My CV.</h1>
+    <div class="flex flex-col md:flex-row items-center justify-center align-middle max-w-3xl p-2 mt-5 mx-auto">
         <div class="bg-theme-2 p-4 rounded-2xl">
-            <a href="/Zahid Galea Curriculum English.pdf"
-               download="Zahid Galea CV English.pdf"
+            <a href="/Zahid Galea - CV English.pdf"
+               download="Zahid Galea - CV English.pdf"
                class="text-theme-4">Download PDF for more Details</a>
         </div>
     </div>
@@ -248,49 +292,44 @@ const experiences = [
         <div class="container mx-auto p-5">
             <div class="flex flex-col md:flex-col">
                 <div class="w-full">
-                    <div class="p-6">
+                    <div class="p-4 text-center">
                         <h1 class="text-3xl font-bold mb-2">{identification.name}</h1>
-                        <p class="mb-4">{identification.birthdate}</p>
-                        <p class="mb-4">{identification.location}</p>
-                        <p class="mb-4">Nationality: {identification.nationality}</p>
-                        <a href="mailto:zahidale.zg@gmail.com" class="text-blue-500">{identification.mail}</a>
+                        <p class="mb-2">{identification.location}</p>
+                        <p class="mb-2">
+                            <a href={`https://${identification.linkedin}`} target="_blank"
+                               class="text-blue-500">{identification.linkedin}</a>
+                        </p>
+                        <p class="mb-2">{identification.phone}</p>
+                        <a href={`mailto:${identification.mail}`} class="text-blue-500">{identification.mail}</a>
                     </div>
                 </div>
                 <div class="w-full">
                     <div class="p-6">
-                        <h1 class="text-3xl font-bold mb-3  text-center pt-1">Resume</h1>
-                        <p class="mb-5">I am a lover of technology, innovation and how it can impact the world. I am a
-                            faithful believer and promoter of reinvention, creativity, and continuous improvement.
-                        </p>
-                        <h2 class="text-3xl font-bold mb-3 text-center pt-5">Professional Experience</h2>
+                        <h2 class="text-3xl font-bold mb-6 text-center pt-5">Professional Experience</h2>
                         <div class="grid md:grid-cols-1 gap-4 mb-5">
                             {experiences.map((experience, index) => (
                                     <div>
                                         <h3 class="text-2xl font-bold">{experience.company} — {experience.position}</h3>
-                                        {experience.description}
+                                        <p class="text-gray-600">{experience.location} | {experience.period}</p>
+                                        <p class="mt-2">{experience.description}</p>
 
                                         {experience.projects && experience.projects.length > 0 && (
-                                                <div class=" mt-4">
+                                                <div class="mt-4">
                                                     {experience.projects.map((project) => (
-                                                            <div class="mb-4 ">
+                                                            <div class="mb-4">
                                                                 <h5 class="font-bold">{project.name}</h5>
                                                                 <p class="pl-5 italic">{project.description}</p>
-                                                                <ul class="pl-5 list-disc ml-5">
-                                                                    {project.technologies && project.technologies.length > 0 && (
-                                                                            <div>
-                                                                                <h1 class="text-1xl font-bold m-2">
-                                                                                    Technologies:</h1>
-                                                                                <ul class="list-disc ml-5">
-                                                                                    {project.technologies.map((tech) => (
-                                                                                            <li> {tech.name}
-                                                                                                {tech.objective && " - "}
-                                                                                                {tech.objective}</li>
-                                                                                    ))}
-                                                                                </ul>
-                                                                            </div>
-                                                                    )}
-
-                                                                </ul>
+                                                                {project.technologies && project.technologies.length > 0 && (
+                                                                        <div>
+                                                                            <h1 class="text-1xl font-bold m-2">
+                                                                                Technologies:</h1>
+                                                                            <ul class="list-disc ml-5">
+                                                                                {project.technologies.map((tech) => (
+                                                                                        <li>{tech.name}{tech.objective && ` - ${tech.objective}`}</li>
+                                                                                ))}
+                                                                            </ul>
+                                                                        </div>
+                                                                )}
                                                             </div>
                                                     ))}
                                                 </div>
@@ -299,36 +338,43 @@ const experiences = [
                                                 <hr class="my-6 border-t border-gray-300"/>
                                         )}
                                     </div>
-
                             ))}
                         </div>
 
-                        <h2 class="text-3xl font-bold mb-3  text-center pt-5">Professional Certifications</h2>
-                        <ul class="list-disc ml-5 mb-5">
-                            <li><a href="https://google.accredible.com/6df3e512-380a-4670-b1ff-177e304e6d3a"
-                                   target="_blank">Google
-                                Cloud Certified - Professional Data Engineer. Sep 2023 - Sep 2025</a>
-                            </li>
+                        <h2 class="text-3xl font-bold mb-3 text-center pt-5">Education</h2>
+                        <div class="mb-5">
+                            {education.map((edu, index) => (
+                                    <div class="mb-3">
+                                        <h3 class="font-bold">{edu.institution}</h3>
+                                        <p>{edu.degree}</p>
+                                        <p class="text-gray-600">{edu.location} | {edu.year || edu.status}</p>
+                                        {index < education.length - 1 && (
+                                                <hr class="my-3 border-t border-gray-200"/>
+                                        )}
+                                    </div>
+                            ))}
+                        </div>
 
+                        <h2 class="text-3xl font-bold mb-3 text-center pt-5">Professional Certifications</h2>
+                        <ul class="list-disc ml-5 mb-5">
+                            {certifications.map((cert) => (
+                                    <li>
+                                        <a href={cert.url} target="_blank" class="text-blue-500">
+                                            {cert.name}. {cert.period}
+                                        </a>
+                                    </li>
+                            ))}
                         </ul>
 
-                        <h2 class="text-3xl font-bold mb-3  text-center pt-5">Studies</h2>
+                        <h2 class="text-3xl font-bold mb-3 text-center pt-5">Languages</h2>
                         <ul class="list-disc ml-5 mb-5">
-                            <li>DUOC UC, Providencia — Informatics Engineering. February 2020</li>
-                            <!-- More studies can be added here -->
+                            {languages.map((lang) => (
+                                    <li>{lang.language} - {lang.level}</li>
+                            ))}
                         </ul>
-
-                        <h2 class="text-3xl font-bold mb-3 text-center pt-5">Language</h2>
-                        <ul class="list-disc ml-5 mb-5">
-                            <li>Intermediate English B1.</li>
-                            <li>Native Spanish.</li>
-                        </ul>
-
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </BaseLayout>
-

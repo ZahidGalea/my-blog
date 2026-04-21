@@ -1,7 +1,12 @@
 ---
 import BlogSearch from './BlogSearch';
-let {allPosts} = Astro.props;
-const posts = allPosts.filter((post) => !post.frontmatter.draft && post.frontmatter.title);
+
+interface Props {
+  allPosts?: any[];
+}
+
+const { allPosts = [] } = Astro.props;
+const posts = allPosts.filter((post: any) => !post.frontmatter?.draft && post.frontmatter?.title);
 ---
 
-<BlogSearch client:load searchList={posts}/>
+<BlogSearch client:load searchList={posts as any}/>

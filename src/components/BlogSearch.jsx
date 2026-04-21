@@ -1,5 +1,5 @@
 import Fuse from 'fuse.js';
-import React, {useState} from 'react';
+import {useState} from 'react';
 import StringDate from './StringDate';
 
 // Configs fuse.js

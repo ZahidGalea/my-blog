@@ -1,0 +1,38 @@
+---
+import '@/styles/global.css';
+import {Image} from 'astro:assets';
+import myImage from '../images/me.png';
+const pageTitle = "Zahid Galea - Welcome";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout pageTitle={pageTitle}>
+    <div class="flex flex-col md:flex-row items-center max-w-3xl p-2 mb-20 mt-20 mx-auto">
+        <h1 class="text-5xl mb-4 md:mb-0 md:mr-4">Hi!, Welcome to my space.</h1>
+        <Image src={myImage} alt="Zahid Galea" class="w-full h-auto rounded-full object-cover mx-auto max-w-36"/>
+    </div>
+
+    <h1 class="text-2xl">Hello! I'm Zahid Galea 👋</h1>
+    <p>
+        <br>
+        Born in Venezuela 🇻🇪, Moved to Santiago, Chile 🇨🇱 & Buenos Aires, Argentina 🇦🇷
+        <br><br>
+        My curiosity and passion
+        for technology first led me to delve into the world of "FullStack" and later
+        into the world of "machine learning". Since then,
+        life has steered me primarily towards the paths of architecture , data engineering and AI Gen.
+        <br><br>
+        I've been fortunate to work in various sectors such as banking, telecommunications, and consulting, which has
+        allowed me to face varied challenges and enrich my experience. I am an enthusiast of software
+        engineering and am always looking to try out new technologies.
+        <br>
+        <br>
+        My professional journey has led me to roles in DevOps, DataOps, data engineering, Fullstack development,
+        and more. I love automating processes and exploring management and data architecture tools. I'm always ready for
+        a new challenge!
+        <br>
+        <br>
+    </p>
+
+
+</BaseLayout>
+

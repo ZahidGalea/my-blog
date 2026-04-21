@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Sinergia - Exploración Interpersonal</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Prevenir comportamientos de recarga al arrastrar en móviles */
+        body {
+            touch-action: none;
+            overflow: hidden;
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        .card-transition {
+            transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-[#0a0a0a] flex flex-col items-center justify-center p-6 font-sans text-white">
+
+    <!-- Header -->
+    <div class="text-center mb-10 z-10">
+        <h1 class="text-2xl font-light tracking-[0.4em] uppercase opacity-90 text-indigo-100">Sinergia</h1>
+        <p class="text-[9px] mt-2 text-neutral-500 tracking-[0.2em] uppercase">Exploración Interpersonal • Mazo Completo</p>
+    </div>
+
+    <!-- Contenedor Principal (Tarjetas o Estado Vacío) -->
+    <div class="relative w-full max-w-xs h-[440px] flex items-center justify-center" id="main-container">
+        <!-- Las tarjetas se inyectarán aquí -->
+    </div>
+
+    <!-- Controles inferiores -->
+    <div id="controls-container" class="flex flex-col items-center gap-8 mt-16 z-10 hidden">
+        <div class="flex gap-8 items-center" id="buttons-row">
+            <!-- Botón Rechazar -->
+            <button onclick="handleSwipeBtn('left')" class="w-14 h-14 flex items-center justify-center border border-white/10 rounded-full hover:bg-white/5 transition-all active:scale-90">
+                <i data-lucide="x" class="w-5 h-5 text-neutral-500"></i>
+            </button>
+
+            <!-- Botón Deshacer (Se inyecta dinámicamente si hay historial) -->
+            <div id="undo-btn-wrapper"></div>
+            
+            <!-- Botón Aceptar -->
+            <button onclick="handleSwipeBtn('right')" class="w-14 h-14 flex items-center justify-center bg-white rounded-full hover:scale-105 active:scale-90 transition-all shadow-xl shadow-white/10">
+                <i data-lucide="heart" class="w-5 h-5 text-black fill-black"></i>
+            </button>
+        </div>
+
+        <button onclick="startGame()" class="text-[9px] text-neutral-600 uppercase tracking-widest hover:text-neutral-400 transition-colors">
+            Reiniciar Mazo
+        </button>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="mt-8 text-[8px] text-neutral-600 uppercase tracking-[0.3em] font-medium text-center">
+    </footer>
+
+    <script>
+        const QUESTIONS = [
+            // BLOQUE INICIAL: Ligeras e Individuales (Nivel 1)
+            { id: 1, level: 1, type: 'Individual', text: '¿Cuál es ese pasatiempo que podrías pasar horas haciendo sin aburrirte?', color: 'bg-slate-800' },
+            { id: 2, level: 1, type: 'Individual', text: 'Si pudieras despertar mañana siendo un experto en algo nuevo, ¿qué elegirías?', color: 'bg-slate-800' },
+            { id: 3, level: 1, type: 'Esencia', text: '¿Qué es lo que más te genera nostalgia de tu vida hace diez años?', color: 'bg-slate-800' },
+            { id: 4, level: 1, type: 'Individual', text: '¿Cuál es tu lugar favorito en el mundo para desconectarte de todo?', color: 'bg-slate-800' },
+            { id: 5, level: 1, type: 'Esencia', text: '¿Cuál fue tu primera impresión real de mí cuando nos conocimos?', color: 'bg-slate-800' },
+            { id: 6, level: 2, type: 'Trayecto', text: '¿Qué es lo que más te ha costado desaprender en este último año?', color: 'bg-zinc-800' }, 
+            { id: 7, level: 1, type: 'Individual', text: '¿Cuál es el mejor consejo que has recibido y que realmente aplicas?', color: 'bg-slate-800' },
+            { id: 8, level: 1, type: 'Esencia', text: '¿Qué rasgo de mi personalidad crees que no ha cambiado nada con el tiempo?', color: 'bg-slate-800' },
+            { id: 9, level: 1, type: 'Individual', text: '¿Cuál es esa película o libro que sientes que todo el mundo debería conocer?', color: 'bg-slate-800' },
+            { id: 10, level: 3, type: 'Vínculo', text: '¿Crees que es posible conocer a alguien por años y de repente verle de una forma totalmente nueva?', color: 'bg-neutral-800' },
+
+            // BLOQUE INTERMEDIO: Reflexión y Crecimiento (Mezcla de Nivel 1 y 2)
+            { id: 11, level: 2, type: 'Trayecto', text: '¿Cuál es la diferencia más grande entre lo que querías a los 20 y lo que buscas hoy?', color: 'bg-zinc-800' },
+            { id: 12, level: 1, type: 'Individual', text: '¿Qué es algo que antes te importaba mucho y ahora te parece irrelevante?', color: 'bg-slate-800' },
+            { id: 13, level: 2, type: 'Trayecto', text: '¿Cómo manejas hoy la incertidumbre en comparación a cómo lo hacías antes?', color: 'bg-zinc-800' },
+            { id: 14, level: 1, type: 'Individual', text: '¿Cuál es tu mayor orgullo personal que no tenga nada que ver con el trabajo?', color: 'bg-slate-800' },
+            { id: 15, level: 2, type: 'Trayecto', text: '¿Qué importancia tiene para ti el silencio compartido con otra persona?', color: 'bg-zinc-800' },
+            { id: 16, level: 3, type: 'Vínculo', text: '¿Alguna vez has sentido que hubo una "señal" entre dos personas que simplemente se ignoró por comodidad?', color: 'bg-neutral-800' },
+            { id: 17, level: 1, type: 'Individual', text: '¿Cuál es tu "placer culposo" más inofensivo?', color: 'bg-slate-800' },
+            { id: 18, level: 2, type: 'Trayecto', text: '¿Sientes que hoy eres más fiel a tus deseos o a lo que los demás esperan de ti?', color: 'bg-zinc-800' },
+            { id: 19, level: 1, type: 'Individual', text: '¿Qué canción es la que siempre te sube el ánimo sin falta?', color: 'bg-slate-800' },
+            { id: 20, level: 2, type: 'Trayecto', text: '¿Cuál es ese miedo que has logrado superar recientemente?', color: 'bg-zinc-800' },
+
+            // BLOQUE PROFUNDO: Valores y Conexión
+            { id: 21, level: 1, type: 'Individual', text: '¿Qué es lo primero que notas en alguien para decidir que quieres que sea tu amigo?', color: 'bg-slate-800' },
+            { id: 22, level: 3, type: 'Vínculo', text: '¿Qué rasgo de mi personalidad actual te genera más curiosidad?', color: 'bg-neutral-800' },
+            { id: 23, level: 2, type: 'Trayecto', text: '¿Cómo ha cambiado tu concepto de "hogar" después de vivir en diferentes lugares?', color: 'bg-zinc-800' },
+            { id: 24, level: 2, type: 'Trayecto', text: '¿Qué es lo que más valoras de que hayamos mantenido el contacto a través de los años?', color: 'bg-zinc-800' },
+            { id: 25, level: 1, type: 'Individual', text: 'Si pudieras viajar a cualquier momento del pasado, ¿a dónde irías?', color: 'bg-slate-800' },
+            { id: 26, level: 3, type: 'Vínculo', text: '¿Crees que la atracción es algo fijo o algo que puede nacer de la complicidad intelectual?', color: 'bg-neutral-800' },
+            { id: 27, level: 2, type: 'Trayecto', text: '¿Cuál es la lección más dura que te ha enseñado una decepción personal?', color: 'bg-zinc-800' },
+            { id: 28, level: 1, type: 'Individual', text: '¿Cómo luce para ti un domingo perfecto de descanso absoluto?', color: 'bg-slate-800' },
+            { id: 29, level: 2, type: 'Trayecto', text: '¿Qué cualidad admiras en los demás que te gustaría tener más presente en ti?', color: 'bg-zinc-800' },
+            { id: 30, level: 3, type: 'Vínculo', text: '¿Qué pasaría si hoy decidiéramos ser 100% honestos sobre lo que pensamos el uno del otro?', color: 'bg-neutral-800' },
+
+            // BLOQUE FINAL: Máxima Sintonía y Diversión
+            { id: 31, level: 1, type: 'Individual', text: '¿Cuál es tu comida favorita que podrías comer todos los días de tu vida?', color: 'bg-slate-800' },
+            { id: 32, level: 2, type: 'Trayecto', text: '¿Sientes que el tiempo nos hace más sabios o simplemente más cautelosos?', color: 'bg-zinc-800' },
+            { id: 33, level: 3, type: 'Vínculo', text: '¿Cómo sabes cuando hay una química especial con alguien sin necesidad de usar palabras?', color: 'bg-neutral-800' },
+            { id: 34, level: 1, type: 'Individual', text: '¿Cuál es el viaje que más ha marcado tu forma de ser?', color: 'bg-slate-800' },
+            { id: 35, level: 2, type: 'Trayecto', text: '¿Cuál es ese secreto para mantener la calma en momentos de mucho estrés?', color: 'bg-zinc-800' },
+            { id: 36, level: 3, type: 'Vínculo', text: '¿Qué es lo que más te atrae de la personalidad de alguien cuando logras ver más allá de la superficie?', color: 'bg-neutral-800' },
+            { id: 37, level: 1, type: 'Individual', text: '¿Qué es algo que te apasiona tanto que podrías dar una charla sobre ello ahora mismo?', color: 'bg-slate-800' },
+            { id: 38, level: 2, type: 'Trayecto', text: '¿Qué parte de tu evolución personal te hace sentir más orgullosa/o hoy?', color: 'bg-zinc-800' },
+            { id: 39, level: 3, type: 'Vínculo', text: 'Si este viaje fuera un paréntesis en nuestras vidas, ¿qué "regla" de tu rutina te daría curiosidad romper?', color: 'bg-neutral-800' },
+            { id: 40, level: 1, type: 'Individual', text: '¿Cuál es tu recuerdo más divertido de nosotros en la universidad?', color: 'bg-slate-800' },
+            { id: 41, level: 2, type: 'Trayecto', text: '¿Qué significa para ti "tener éxito" en esta etapa de tu vida?', color: 'bg-zinc-800' },
+            { id: 42, level: 3, type: 'Vínculo', text: '¿Cuál es tu frontera personal entre una amistad muy íntima y algo más?', color: 'bg-neutral-800' },
+            { id: 43, level: 1, type: 'Individual', text: '¿Cuál es tu talento "inútil" favorito?', color: 'bg-slate-800' },
+            { id: 44, level: 2, type: 'Trayecto', text: '¿Cómo ha cambiado tu forma de dar y recibir consejos en estos años?', color: 'bg-zinc-800' },
+            { id: 45, level: 3, type: 'Vínculo', text: '¿Crees que el tiempo ha hecho que nuestra química sea más evidente o más discreta?', color: 'bg-neutral-800' },
+            { id: 46, level: 1, type: 'Individual', text: '¿Qué es lo que más te hace reír a carcajadas?', color: 'bg-slate-800' },
+            { id: 47, level: 2, type: 'Trayecto', text: '¿Cuál es la diferencia más grande entre cómo amabas a los 19 y cómo amas a los 29?', color: 'bg-zinc-800' },
+            { id: 48, level: 3, type: 'Vínculo', text: '¿Hay algún secreto o deseo que nunca has compartido por miedo a cambiar la dinámica de una relación?', color: 'bg-neutral-800' },
+            { id: 49, level: 1, type: 'Individual', text: '¿Cuál es tu mayor meta para los próximos cinco años?', color: 'bg-slate-800' },
+            { id: 50, level: 2, type: 'Trayecto', text: '¿Qué rasgo de mi personalidad te parece el más difícil de leer?', color: 'bg-zinc-800' },
+            { id: 51, level: 3, type: 'Vínculo', text: 'Si hoy tuviéramos que elegir una "aventura" pendiente entre nosotros, ¿cuál sería el primer paso?', color: 'bg-neutral-800' },
+            { id: 52, level: 1, type: 'Individual', text: '¿Cómo te gustaría ser recordado por las personas que más quieres?', color: 'bg-slate-800' },
+        ];
+
+        // Estado
+        let cards = [];
+        let history = [];
+        let dragX = 0;
+        let isDragging = false;
+        let dragStartX = 0;
+        const SWIPE_THRESHOLD = 80;
+        let topCardElement = null;
+
+        // Elementos del DOM
+        const mainContainer = document.getElementById('main-container');
+        const controlsContainer = document.getElementById('controls-container');
+        const undoBtnWrapper = document.getElementById('undo-btn-wrapper');
+        const footer = document.getElementById('footer');
+
+        // Inicializar juego
+        function startGame() {
+            cards = [...QUESTIONS];
+            history = [];
+            renderAll();
+        }
+
+        // Renderizar toda la interfaz
+        function renderAll() {
+            renderCards();
+            renderControls();
+            renderFooter();
+            lucide.createIcons();
+        }
+
+        // Obtener el icono correspondiente al nivel
+        function getLevelIcon(level) {
+            if (level === 1) return '<i data-lucide="user" class="w-3.5 h-3.5"></i>';
+            if (level === 2) return '<i data-lucide="eye" class="w-3.5 h-3.5"></i>';
+            if (level === 3) return '<i data-lucide="sparkles" class="w-3.5 h-3.5"></i>';
+            return '';
+        }
+
+        // Obtener los puntos de nivel (1 a 3)
+        function getLevelDots(level) {
+            return [1, 2, 3].map(l => 
+                `<div class="h-1.5 w-1.5 rounded-full ${l <= level ? 'bg-white' : 'bg-white/30'}"></div>`
+            ).join('');
+        }
+
+        // Renderizar las tarjetas o el mensaje de Mazo Agotado
+        function renderCards() {
+            mainContainer.innerHTML = '';
+            topCardElement = null;
+
+            if (cards.length === 0) {
+                // Estado "Mazo Agotado"
+                const emptyHTML = `
+                    <div class="bg-neutral-900/50 backdrop-blur-xl p-10 rounded-[3rem] shadow-2xl text-center border border-white/5 w-full">
+                        <h2 class="text-xl font-light mb-4">Mazo Agotado</h2>
+                        <p class="text-neutral-500 mb-8 text-xs leading-relaxed italic">"Las mejores conexiones son aquellas que se atreven a preguntar lo que el silencio calla."</p>
+                        
+                        <div class="flex flex-col gap-3">
+                            ${history.length > 0 ? `
+                            <button 
+                                onclick="handleGoBack()"
+                                class="w-full border border-white/10 text-white py-4 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white/5 transition-colors"
+                            >
+                                Ver la última pregunta
+                            </button>
+                            ` : ''}
+                            <button 
+                                onclick="startGame()"
+                                class="w-full bg-white text-black py-4 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-neutral-200 transition-colors shadow-lg"
+                            >
+                                Reiniciar Sesión
+                            </button>
+                        </div>
+                    </div>
+                `;
+                mainContainer.innerHTML = emptyHTML;
+            } else {
+                // Solo renderizar las primeras 2 cartas para rendimiento, en orden inverso para que la [0] quede arriba
+                const visibleCards = cards.slice(0, 2).reverse();
+                
+                visibleCards.forEach((card, index) => {
+                    const isTop = index === visibleCards.length - 1; // La última del array renderizado es la que está visualmente arriba
+                    
+                    const cardDiv = document.createElement('div');
+                    cardDiv.className = `absolute w-full h-full rounded-[3rem] p-10 flex flex-col justify-between shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10 ${card.color} ${isTop ? 'card-transition' : ''}`;
+                    
+                    if (isTop) {
+                        cardDiv.style.zIndex = 50;
+                        cardDiv.id = 'top-card';
+                        topCardElement = cardDiv;
+
+                        // Eventos táctiles y de mouse
+                        cardDiv.addEventListener('pointerdown', handlePointerDown);
+                        cardDiv.addEventListener('pointermove', handlePointerMove);
+                        cardDiv.addEventListener('pointerup', handlePointerUp);
+                        cardDiv.addEventListener('pointercancel', handlePointerUp);
+                        cardDiv.addEventListener('pointerleave', handlePointerUp);
+                    } else {
+                        // Carta de fondo
+                        cardDiv.style.transform = 'scale(0.95) translateY(12px)';
+                        cardDiv.style.opacity = '0.4';
+                    }
+
+                    cardDiv.innerHTML = `
+                        <div class="flex justify-between items-center opacity-40">
+                            <span class="text-[9px] font-bold uppercase tracking-widest">${card.type}</span>
+                            ${getLevelIcon(card.level)}
+                        </div>
+                        <div class="flex-grow flex items-center justify-center px-2">
+                            <p class="text-xl md:text-2xl font-light text-center leading-[1.4] tracking-tight">
+                                ${card.text}
+                            </p>
+                        </div>
+                        <div class="flex justify-center items-center gap-4 opacity-30">
+                            <div class="flex gap-1.5">
+                                ${getLevelDots(card.level)}
+                            </div>
+                        </div>
+                    `;
+                    
+                    mainContainer.appendChild(cardDiv);
+                });
+            }
+        }
+
+        function renderControls() {
+            if (cards.length === 0) {
+                controlsContainer.classList.add('hidden');
+            } else {
+                controlsContainer.classList.remove('hidden');
+                
+                // Mostrar botón de retroceso solo si hay historial
+                if (history.length > 0) {
+                    undoBtnWrapper.innerHTML = `
+                        <button 
+                            onclick="handleGoBack()"
+                            class="w-12 h-12 flex items-center justify-center bg-slate-800/50 border border-white/5 rounded-full hover:bg-slate-700 transition-all active:scale-90 shadow-lg group"
+                            title="Pregunta anterior"
+                        >
+                            <i data-lucide="undo-2" class="w-4 h-4 text-indigo-300 group-hover:text-indigo-100"></i>
+                        </button>
+                    `;
+                } else {
+                    undoBtnWrapper.innerHTML = '';
+                }
+            }
+        }
+
+        function renderFooter() {
+            if (cards.length > 0) {
+                footer.innerText = `${cards.length} coordenadas restantes • Ambos responden`;
+            } else {
+                footer.innerText = 'Sesión completada';
+            }
+        }
+
+        // Lógica de arrastre
+        function handlePointerDown(e) {
+            if (cards.length === 0 || !topCardElement) return;
+            isDragging = true;
+            dragStartX = e.clientX || (e.touches && e.touches[0].clientX);
+            
+            // Quitar transición temporalmente para un movimiento fluido al dedo/mouse
+            topCardElement.classList.remove('card-transition');
+            topCardElement.setPointerCapture(e.pointerId);
+        }
+
+        function handlePointerMove(e) {
+            if (!isDragging || !topCardElement) return;
+            e.preventDefault(); // Prevenir el scroll en algunos móviles rebeldes
+            
+            const clientX = e.clientX || (e.touches && e.touches[0].clientX);
+            dragX = clientX - dragStartX;
+            
+            // Aplicar transformación en tiempo real
+            topCardElement.style.transform = `translateX(${dragX}px) rotate(${dragX * 0.05}deg)`;
+        }
+
+        function handlePointerUp(e) {
+            if (!isDragging || !topCardElement) return;
+            isDragging = false;
+            
+            // Devolver transición para la animación final
+            topCardElement.classList.add('card-transition');
+            topCardElement.releasePointerCapture(e.pointerId);
+
+            if (dragX > SWIPE_THRESHOLD) {
+                executeSwipe('right');
+            } else if (dragX < -SWIPE_THRESHOLD) {
+                executeSwipe('left');
+            } else {
+                // Volver al centro
+                dragX = 0;
+                topCardElement.style.transform = 'translateX(0px) rotate(0deg)';
+            }
+        }
+
+        // Lógica de swipe animado
+        function executeSwipe(direction) {
+            if (!topCardElement || cards.length === 0) return;
+            
+            const multiplier = direction === 'right' ? 1 : -1;
+            const targetX = 600 * multiplier;
+            
+            topCardElement.style.transform = `translateX(${targetX}px) rotate(${targetX * 0.05}deg)`;
+            
+            const currentCard = cards[0];
+            
+            // Esperar a que termine la animación antes de cambiar el estado
+            setTimeout(() => {
+                history.unshift(currentCard);
+                cards.shift();
+                dragX = 0;
+                renderAll();
+            }, 300);
+        }
+
+        // Helper para los botones de las X o Corazón
+        function handleSwipeBtn(direction) {
+            if (cards.length === 0 || !topCardElement) return;
+            // Asegurarnos de que tenga la clase de transición para que no desaparezca instantáneamente
+            topCardElement.classList.add('card-transition');
+            executeSwipe(direction);
+        }
+
+        // Lógica de Deshacer
+        function handleGoBack() {
+            if (history.length === 0) return;
+            const prevCard = history[0];
+            history.shift();
+            cards.unshift(prevCard);
+            renderAll();
+        }
+
+        // Inicializar al cargar
+        document.addEventListener('DOMContentLoaded', startGame);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Iguazú · 3 días en la selva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,900;1,9..144,400;1,9..144,700&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1612;
+    --paper: #f4ede1;
+    --paper-warm: #ede3d1;
+    --moss: #2a3a1f;
+    --moss-deep: #1a2614;
+    --terracotta: #c44a1f;
+    --terracotta-deep: #8f3515;
+    --ochre: #d4a855;
+    --mist: #b8c4a8;
+    --water: #3d5a6c;
+    --line: rgba(26, 22, 18, 0.15);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.5;
+    font-size: 16px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* Grain texture overlay */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.05 0 0 0 0.15 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    opacity: 0.4;
+    pointer-events: none;
+    z-index: 1000;
+    mix-blend-mode: multiply;
+  }
+
+  .container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+  }
+
+  /* ============ HEADER / HERO ============ */
+  header {
+    padding: 32px 0 0;
+    position: relative;
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .top-bar .mark {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .top-bar .mark::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--terracotta);
+    border-radius: 50%;
+  }
+
+  .hero {
+    padding: 80px 0 120px;
+    position: relative;
+  }
+
+  .hero-meta {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+    margin-bottom: 64px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .hero-meta .item {
+    border-top: 1px solid var(--ink);
+    padding-top: 12px;
+  }
+
+  .hero-meta .label {
+    color: rgba(26, 22, 18, 0.5);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .hero-meta .value {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .hero h1 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: clamp(80px, 16vw, 240px);
+    line-height: 0.85;
+    letter-spacing: -0.04em;
+    color: var(--moss-deep);
+    position: relative;
+  }
+
+  .hero h1 .italic {
+    font-style: italic;
+    font-weight: 400;
+    color: var(--terracotta);
+  }
+
+  .hero h1 .amp {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--ochre);
+  }
+
+  .hero-subtitle {
+    position: absolute;
+    right: 0;
+    bottom: 180px;
+    max-width: 320px;
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 1.4;
+    color: var(--moss);
+    text-align: right;
+  }
+
+  .hero-subtitle::before {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: var(--terracotta);
+    margin-left: auto;
+    margin-bottom: 16px;
+  }
+
+  /* decorative waterfall SVG */
+  .hero-deco {
+    position: absolute;
+    right: -80px;
+    top: 60px;
+    width: 280px;
+    opacity: 0.8;
+    pointer-events: none;
+  }
+
+  /* ============ OVERVIEW ============ */
+  .overview {
+    padding: 80px 0;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--paper-warm);
+    margin: 0 -9999px;
+    padding-left: 9999px;
+    padding-right: 9999px;
+  }
+
+  .overview-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 80px;
+    align-items: start;
+  }
+
+  .section-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--terracotta);
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .section-label::before {
+    content: '';
+    width: 24px;
+    height: 1px;
+    background: var(--terracotta);
+  }
+
+  .overview h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 48px;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    color: var(--moss-deep);
+  }
+
+  .overview h2 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .weather-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 40px;
+  }
+
+  .weather-card {
+    background: var(--paper);
+    border: 1px solid var(--line);
+    padding: 20px;
+    position: relative;
+  }
+
+  .weather-card .day {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(26, 22, 18, 0.5);
+    margin-bottom: 8px;
+  }
+
+  .weather-card .temps {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 400;
+    color: var(--moss-deep);
+    margin-bottom: 4px;
+  }
+
+  .weather-card .temps .low {
+    color: rgba(26, 22, 18, 0.4);
+    font-size: 20px;
+  }
+
+  .weather-card .cond {
+    font-size: 13px;
+    color: var(--moss);
+  }
+
+  .weather-card .rain {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--water);
+  }
+
+  /* ============ KEY PLACES ============ */
+  .places {
+    padding: 120px 0;
+  }
+
+  .places-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 64px;
+    gap: 40px;
+  }
+
+  .places-header h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 72px;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--moss-deep);
+    max-width: 700px;
+  }
+
+  .places-header h2 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .places-header .count {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--moss);
+    white-space: nowrap;
+  }
+
+  .places-list {
+    border-top: 1px solid var(--ink);
+  }
+
+  .place-row {
+    display: grid;
+    grid-template-columns: 60px 2fr 1fr 120px 40px;
+    gap: 32px;
+    align-items: center;
+    padding: 28px 0;
+    border-bottom: 1px solid var(--line);
+    transition: all 0.4s cubic-bezier(0.2, 0.8, 0.3, 1);
+    position: relative;
+  }
+
+  .place-row:hover {
+    padding-left: 16px;
+    background: linear-gradient(90deg, rgba(196, 74, 31, 0.06), transparent);
+  }
+
+  .place-row .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: rgba(26, 22, 18, 0.4);
+  }
+
+  .place-row .name {
+    font-family: 'Fraunces', serif;
+    font-size: 32px;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    color: var(--moss-deep);
+  }
+
+  .place-row .name em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .place-row .desc {
+    font-size: 14px;
+    color: rgba(26, 22, 18, 0.7);
+    line-height: 1.4;
+  }
+
+  .place-row .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--moss);
+    letter-spacing: 0.05em;
+  }
+
+  .place-row .priority {
+    display: flex;
+    gap: 2px;
+    justify-content: flex-end;
+  }
+
+  .place-row .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--terracotta);
+  }
+
+  .place-row .dot.empty {
+    background: transparent;
+    border: 1px solid rgba(26, 22, 18, 0.2);
+  }
+
+  /* ============ ITINERARY ============ */
+  .itinerary {
+    padding: 120px 0;
+    background: var(--moss-deep);
+    color: var(--paper);
+    margin: 0 -9999px;
+    padding-left: 9999px;
+    padding-right: 9999px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .itinerary::before {
+    content: '';
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(212, 168, 85, 0.15), transparent 70%);
+    pointer-events: none;
+  }
+
+  .itinerary-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 32px;
+    position: relative;
+  }
+
+  .itinerary-header {
+    margin-bottom: 80px;
+  }
+
+  .itinerary-header .section-label {
+    color: var(--ochre);
+  }
+
+  .itinerary-header .section-label::before {
+    background: var(--ochre);
+  }
+
+  .itinerary h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 80px;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--paper);
+    max-width: 800px;
+  }
+
+  .itinerary h2 em {
+    font-style: italic;
+    color: var(--ochre);
+  }
+
+  .day-block {
+    display: grid;
+    grid-template-columns: 200px 1fr;
+    gap: 60px;
+    padding: 60px 0;
+    border-top: 1px solid rgba(244, 237, 225, 0.15);
+  }
+
+  .day-block:last-of-type {
+    border-bottom: 1px solid rgba(244, 237, 225, 0.15);
+  }
+
+  .day-marker {
+    position: sticky;
+    top: 40px;
+    align-self: start;
+  }
+
+  .day-marker .date {
+    font-family: 'Fraunces', serif;
+    font-size: 96px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--ochre);
+    letter-spacing: -0.04em;
+  }
+
+  .day-marker .weekday {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: rgba(244, 237, 225, 0.6);
+    margin-top: 8px;
+  }
+
+  .day-marker .tag {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 4px 10px;
+    background: rgba(212, 168, 85, 0.15);
+    border: 1px solid rgba(212, 168, 85, 0.3);
+    color: var(--ochre);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .day-content h3 {
+    font-family: 'Fraunces', serif;
+    font-weight: 400;
+    font-size: 40px;
+    line-height: 1.1;
+    color: var(--paper);
+    margin-bottom: 12px;
+    letter-spacing: -0.02em;
+  }
+
+  .day-content h3 em {
+    font-style: italic;
+    color: var(--ochre);
+  }
+
+  .day-content .lede {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 18px;
+    color: rgba(244, 237, 225, 0.7);
+    margin-bottom: 40px;
+    max-width: 600px;
+    line-height: 1.5;
+  }
+
+  .timeline {
+    border-left: 1px solid rgba(244, 237, 225, 0.2);
+    padding-left: 32px;
+    margin-left: 8px;
+  }
+
+  .event {
+    position: relative;
+    padding-bottom: 32px;
+  }
+
+  .event:last-child { padding-bottom: 0; }
+
+  .event::before {
+    content: '';
+    position: absolute;
+    left: -40px;
+    top: 8px;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: var(--ochre);
+    box-shadow: 0 0 0 4px var(--moss-deep);
+  }
+
+  .event .time {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--ochre);
+    margin-bottom: 4px;
+  }
+
+  .event .title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+
+  .event .detail {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(244, 237, 225, 0.75);
+  }
+
+  .event .detail ul {
+    list-style: none;
+    margin-top: 8px;
+  }
+
+  .event .detail ul li {
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 4px;
+  }
+
+  .event .detail ul li::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--ochre);
+  }
+
+  .event .tip {
+    margin-top: 12px;
+    padding: 12px 16px;
+    background: rgba(212, 168, 85, 0.08);
+    border-left: 2px solid var(--ochre);
+    font-size: 13px;
+    font-style: italic;
+    color: rgba(244, 237, 225, 0.8);
+  }
+
+  /* option blocks for saturday */
+  .options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  .option {
+    padding: 16px;
+    background: rgba(244, 237, 225, 0.04);
+    border: 1px solid rgba(244, 237, 225, 0.1);
+  }
+
+  .option .letter {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-size: 28px;
+    color: var(--ochre);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+
+  .option .name {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    color: var(--paper);
+    margin-bottom: 8px;
+  }
+
+  .option .text {
+    font-size: 12px;
+    color: rgba(244, 237, 225, 0.65);
+    line-height: 1.5;
+  }
+
+  /* ============ CHECKLIST / TIPS ============ */
+  .tips {
+    padding: 120px 0;
+  }
+
+  .tips-header h2 {
+    font-family: 'Fraunces', serif;
+    font-weight: 300;
+    font-size: 72px;
+    line-height: 0.95;
+    letter-spacing: -0.03em;
+    color: var(--moss-deep);
+    margin-bottom: 64px;
+    max-width: 800px;
+  }
+
+  .tips-header h2 em {
+    font-style: italic;
+    color: var(--terracotta);
+  }
+
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 24px;
+  }
+
+  .tip-card {
+    background: var(--paper-warm);
+    border: 1px solid var(--line);
+    padding: 32px;
+    position: relative;
+  }
+
+  .tip-card.wide { grid-column: span 7; }
+  .tip-card.narrow { grid-column: span 5; }
+  .tip-card.third { grid-column: span 4; }
+  .tip-card.half { grid-column: span 6; }
+  .tip-card.full { grid-column: span 12; }
+
+  .tip-card h4 {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--moss-deep);
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .tip-card h4 .num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    color: var(--terracotta);
+    letter-spacing: 0.1em;
+  }
+
+  .tip-list {
+    list-style: none;
+  }
+
+  .tip-list li {
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--moss);
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+
+  .tip-list li::before {
+    content: '';
+    width: 6px;
+    height: 6px;
+    background: var(--terracotta);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 8px;
+  }
+
+  .tip-list.check li::before {
+    content: '';
+    width: 14px;
+    height: 14px;
+    border: 1px solid var(--terracotta);
+    border-radius: 0;
+    background: transparent;
+    margin-top: 4px;
+  }
+
+  .hours-table {
+    width: 100%;
+  }
+
+  .hours-table tr {
+    border-bottom: 1px solid var(--line);
+  }
+
+  .hours-table tr:last-child { border-bottom: none; }
+
+  .hours-table td {
+    padding: 12px 0;
+    font-size: 14px;
+  }
+
+  .hours-table td:first-child {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    color: var(--moss-deep);
+  }
+
+  .hours-table td:last-child {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 12px;
+    color: var(--terracotta);
+    text-align: right;
+  }
+
+  /* ============ FOOTER ============ */
+  footer {
+    padding: 80px 0 40px;
+    background: var(--moss-deep);
+    color: var(--paper);
+    margin: 0 -9999px;
+    padding-left: 9999px;
+    padding-right: 9999px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  footer .big {
+    font-family: 'Fraunces', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(60px, 10vw, 140px);
+    line-height: 1;
+    color: var(--ochre);
+    letter-spacing: -0.03em;
+    margin-bottom: 24px;
+  }
+
+  footer .sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(244, 237, 225, 0.5);
+  }
+
+  /* ============ ANIMATIONS ============ */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero h1 { animation: fadeUp 1s ease-out; }
+  .hero-subtitle { animation: fadeUp 1.2s ease-out 0.3s backwards; }
+  .hero-meta .item {
+    animation: fadeUp 0.8s ease-out backwards;
+  }
+  .hero-meta .item:nth-child(1) { animation-delay: 0.1s; }
+  .hero-meta .item:nth-child(2) { animation-delay: 0.2s; }
+  .hero-meta .item:nth-child(3) { animation-delay: 0.3s; }
+  .hero-meta .item:nth-child(4) { animation-delay: 0.4s; }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width: 900px) {
+    .container { padding: 0 20px; }
+    .overview-inner { grid-template-columns: 1fr; gap: 40px; padding: 0 20px; }
+    .itinerary-inner { padding: 0 20px; }
+    .hero { padding: 40px 0 60px; }
+    .hero-subtitle { position: static; text-align: left; max-width: none; margin-top: 40px; }
+    .hero-subtitle::before { margin-left: 0; }
+    .hero-meta { grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 40px; }
+    .hero-deco { display: none; }
+    .weather-grid { grid-template-columns: 1fr; }
+    .places-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+    .place-row { grid-template-columns: 40px 1fr; gap: 16px; padding: 20px 0; }
+    .place-row .desc, .place-row .time, .place-row .priority { display: none; }
+    .place-row .name { font-size: 22px; }
+    .day-block { grid-template-columns: 1fr; gap: 24px; padding: 40px 0; }
+    .day-marker { position: static; }
+    .day-marker .date { font-size: 64px; }
+    .day-content h3 { font-size: 28px; }
+    .itinerary h2, .places-header h2, .tips-header h2 { font-size: 42px; }
+    .overview h2 { font-size: 32px; }
+    .options { grid-template-columns: 1fr; }
+    .tips-grid { grid-template-columns: 1fr; }
+    .tip-card.wide, .tip-card.narrow, .tip-card.third, .tip-card.half, .tip-card.full { grid-column: span 1; }
+    .timeline { padding-left: 24px; }
+    .event::before { left: -32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- ============ HEADER ============ -->
+  <header>
+    <div class="top-bar">
+      <div class="mark">Zahid & Alejandria · Dossier vol. 01</div>
+      <div>22 — 25 · Abril · 2026</div>
+    </div>
+
+    <div class="hero">
+      <div class="hero-meta">
+        <div class="item">
+          <span class="label">Destino</span>
+          <span class="value">Puerto Iguazú · AR</span>
+        </div>
+        <div class="item">
+          <span class="label">Duración</span>
+          <span class="value">3 días / 3 noches</span>
+        </div>
+        <div class="item">
+          <span class="label">Alojamiento</span>
+          <span class="value">Lodge c/ piscina</span>
+        </div>
+        <div class="item">
+          <span class="label">Clima</span>
+          <span class="value">Subtropical · 27–30°</span>
+        </div>
+      </div>
+
+      <h1>
+        Iguazú,<br>
+        <span class="italic">aguas</span> <span class="amp">&</span><br>
+        selva.
+      </h1>
+
+      <!-- decorative SVG -->
+      <svg class="hero-deco" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="water-g" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#b8c4a8" stop-opacity="0.8"/>
+            <stop offset="100%" stop-color="#3d5a6c" stop-opacity="0.2"/>
+          </linearGradient>
+        </defs>
+        <g stroke="url(#water-g)" fill="none" stroke-width="1.5">
+          <path d="M20 10 Q 25 80, 30 150 T 20 290"/>
+          <path d="M50 10 Q 55 60, 45 140 T 55 290"/>
+          <path d="M80 10 Q 75 70, 85 160 T 75 290"/>
+          <path d="M110 10 Q 115 50, 105 130 T 115 290"/>
+          <path d="M140 10 Q 135 90, 145 170 T 135 290"/>
+          <path d="M170 10 Q 175 60, 165 150 T 175 290"/>
+        </g>
+      </svg>
+
+      <p class="hero-subtitle">
+        Un viaje de descanso y conexión con la selva. Senderismo suave, mañanas sin apuro, agua, silencio y fauna.
+      </p>
+    </div>
+  </header>
+
+  <!-- ============ OVERVIEW ============ -->
+  <section class="overview">
+    <div class="overview-inner">
+      <div>
+        <div class="section-label">01 / Contexto</div>
+        <h2>Un día <em>argentino</em>, un día <em>brasileño</em>, un día de <em>descanso</em>.</h2>
+      </div>
+      <div>
+        <p style="font-size: 17px; line-height: 1.6; color: var(--moss); max-width: 600px;">
+          Zahid y Alejandria, 29. Les gusta caminar, no les gusta madrugar, quieren descansar y conectar con la naturaleza. Lógica simple: jueves completo en Argentina (incluyendo el bote bajo las cataratas), viernes completo en Brasil (cataratas panorámicas + aves + atardecer), y sábado libre en el lodge con el Macuco como opcional. El sábado tiene pronóstico de lluvia, así que queda como día flexible.
+        </p>
+
+        <div class="weather-grid">
+          <div class="weather-card">
+            <div class="day">Jue 23/4</div>
+            <div class="rain">10%</div>
+            <div class="temps">29° <span class="low">/ 20°</span></div>
+            <div class="cond">Alta nubosidad · húmedo</div>
+          </div>
+          <div class="weather-card">
+            <div class="day">Vie 24/4</div>
+            <div class="rain">10%</div>
+            <div class="temps">29° <span class="low">/ 19°</span></div>
+            <div class="cond">Parcial sol · húmedo</div>
+          </div>
+          <div class="weather-card">
+            <div class="day">Sáb 25/4</div>
+            <div class="rain">25%</div>
+            <div class="temps">27° <span class="low">/ 20°</span></div>
+            <div class="cond">Chaparrones tarde/noche</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ KEY PLACES ============ -->
+  <section class="places">
+    <div class="places-header">
+      <div>
+        <div class="section-label">02 / Lugares clave</div>
+        <h2>Ocho <em>paradas</em>, ordenadas por prioridad.</h2>
+      </div>
+      <div class="count">08 items · ordenados por prioridad</div>
+    </div>
+
+    <div class="places-list">
+      <div class="place-row">
+        <div class="num">01</div>
+        <div class="name">Cataratas <em>lado Argentino</em></div>
+        <div class="desc">Garganta del Diablo + Circuitos Superior e Inferior. Inmersión total, todo en un día.</div>
+        <div class="time">DÍA COMPLETO</div>
+        <div class="priority"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+
+      <div class="place-row">
+        <div class="num">02</div>
+        <div class="name">Gran <em>Aventura</em> · el bote</div>
+        <div class="desc">Embarcación que entra bajo las cataratas. Se pasa bajo los saltos, te empapás. Imperdible.</div>
+        <div class="time">2H 15'</div>
+        <div class="priority"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+
+      <div class="place-row">
+        <div class="num">03</div>
+        <div class="name">Cataratas <em>lado Brasileño</em></div>
+        <div class="desc">Trilha das Cataratas, 1.5 km panorámico. Vista frontal completa del cañón.</div>
+        <div class="time">3 HORAS</div>
+        <div class="priority"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+
+      <div class="place-row">
+        <div class="num">04</div>
+        <div class="name">Parque <em>das Aves</em></div>
+        <div class="desc">16 ha, 1.300+ aves rescatadas. Aviarios transitables donde vuelan libres. Junto al parque brasileño.</div>
+        <div class="time">2 HORAS</div>
+        <div class="priority"><span class="dot"></span><span class="dot"></span><span class="dot empty"></span></div>
+      </div>
+
+      <div class="place-row">
+        <div class="num">05</div>
+        <div class="name">Sendero <em>Verde</em></div>
+        <div class="desc">600 m de selva entre el centro de visitantes y Estación Cataratas. Plano, lleno de aves y coatíes.</div>
+        <div class="time">30 MIN</div>
+        <div class="priority"><span class="dot"></span><span class="dot"></span><span class="dot empty"></span></div>
+      </div>
+
+      <div class="place-row">
+        <div class="num">06</div>
+        <div class="name">Lodge <em>+ piscina</em></div>
+        <div class="desc">Selva Iryapú. Piscina, descanso, cenas largas. El ancla del viaje.</div>
+        <div class="time">A ELECCIÓN</div>
+        <div class="priority"><span class="dot"></span><span class="dot"></span><span class="dot"></span></div>
+      </div>
+
+      <div class="place-row">
+        <div class="num">07</div>
+        <div class="name">Hito <em>Tres Fronteras</em></div>
+        <div class="desc">Confluencia Iguazú–Paraná. Atardecer calmo mirando tres países desde un mismo punto.</div>
+        <div class="time">1–1.5 HS</div>
+        <div class="priority"><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span></div>
+      </div>
+
+      <div class="place-row">
+        <div class="num">08</div>
+        <div class="name">Sendero <em>Macuco</em> <span style="font-family: 'JetBrains Mono', monospace; font-style: normal; font-size: 10px; color: rgba(26,22,18,0.4); letter-spacing: 0.1em; margin-left: 8px;">OPCIONAL</span></div>
+        <div class="desc">7 km ida y vuelta por selva. Termina en el Salto Arrechea con pileta natural. Solo si queda energía el sábado.</div>
+        <div class="time">3–4 HORAS</div>
+        <div class="priority"><span class="dot"></span><span class="dot empty"></span><span class="dot empty"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ITINERARY ============ -->
+  <section class="itinerary">
+    <div class="itinerary-inner">
+      <div class="itinerary-header">
+        <div class="section-label">03 / Itinerario</div>
+        <h2>Tres días, <em>sin apuro</em>.</h2>
+      </div>
+
+      <!-- DÍA 1 -->
+      <div class="day-block">
+        <div class="day-marker">
+          <div class="date">23</div>
+          <div class="weekday">Jueves · Abril</div>
+          <span class="tag">Argentina completa</span>
+        </div>
+        <div class="day-content">
+          <h3>Todo el <em>lado argentino</em> en un día</h3>
+          <p class="lede">Sendero Verde caminando, los dos circuitos, el bote bajo las cataratas y cierre con la Garganta del Diablo. El día más intenso pero sin madrugones.</p>
+
+          <div class="timeline">
+            <div class="event">
+              <div class="time">09:00</div>
+              <div class="title">Desayuno tranquilo en el lodge</div>
+              <div class="detail">Preparar mochila: protector, repelente, poncho, traje de baño puesto (para la Gran Aventura), muda seca completa en bolsa impermeable, toalla, agua, snacks.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">10:30</div>
+              <div class="title">Entrada al parque · Sendero Verde</div>
+              <div class="detail">En vez de tomar el tren desde el centro de visitantes, caminan los 600 m del Sendero Verde hasta Estación Cataratas. Plano, lento, entre la selva. Primeros coatíes y tucanes del día.</div>
+              <div class="tip">Los coatíes son curiosos y se acercan. No darles comida, muerden.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">11:00 — 12:30</div>
+              <div class="title">Circuito Superior</div>
+              <div class="detail">1.750 m sin escaleras, vistas desde arriba de los saltos. Suave para arrancar: Dos Hermanas, Chico, Ramírez, Bosetti, Adán y Eva, Méndez, Mbiguá.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">12:30 — 13:30</div>
+              <div class="title">Almuerzo en el parque</div>
+              <div class="detail">Restaurante La Selva o vianda. Comer liviano — en un rato vienen horas de agua.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">13:30 — 15:45</div>
+              <div class="title">Circuito Inferior + Gran Aventura (el bote)</div>
+              <div class="detail">
+                Bajan por el Circuito Inferior (1.400 m con vistas frontales y escaleras) y en el camino está el embarcadero de la Gran Aventura.
+                <ul>
+                  <li>Primer tramo: camión 4×4 por el Sendero Yacaratiá, 8 km de selva</li>
+                  <li>Embarque en gomones, 6 km por el río Iguazú Inferior</li>
+                  <li>Entrada al Cañón de la Garganta del Diablo: se meten <strong>bajo</strong> los saltos</li>
+                  <li>Terminan empapados hasta los huesos</li>
+                </ul>
+              </div>
+              <div class="tip">⚠ Reservar <strong>con anticipación</strong>, cupos limitados. Guardar TODO en las bolsas estancas que da el operador.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">15:45 — 16:15</div>
+              <div class="title">Ropa seca + tren a Garganta del Diablo</div>
+              <div class="detail">Cambio rápido de ropa en los baños del parque. Tren Ecológico desde Estación Cataratas hasta Estación Garganta (pedir ticket al llegar, último tren ~15:30 — llegar con margen).</div>
+            </div>
+
+            <div class="event">
+              <div class="time">16:15 — 17:45</div>
+              <div class="title">Garganta del Diablo · la joya</div>
+              <div class="detail">
+                Pasarela de 1.100 m sobre el río Iguazú hasta el mirador. A esta hora hay menos gente que al mediodía.
+                <ul>
+                  <li>14 saltos de 80 m cayendo en forma de U</li>
+                  <li>Vuelve a salpicar agua — pero ya están secos, da igual</li>
+                  <li>Vuelta en tren a Estación Central</li>
+                </ul>
+              </div>
+              <div class="tip">El orden "bote primero, Garganta después" tiene truco: llegan mojados a la Garganta y no importa empaparse otra vez.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">18:00</div>
+              <div class="title">Salida del parque</div>
+              <div class="detail">Cierre a las 18:00. Si la Garganta lleva más tiempo, igual el tren de vuelta opera hasta el cierre.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">19:30 — 22:00</div>
+              <div class="title">Lodge · piscina · cena larga</div>
+              <div class="detail">Ducha caliente, piscina a la noche, cena tranquila. Las piernas lo van a agradecer.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DÍA 2 -->
+      <div class="day-block">
+        <div class="day-marker">
+          <div class="date">24</div>
+          <div class="weekday">Viernes · Abril</div>
+          <span class="tag">Brasil completo</span>
+        </div>
+        <div class="day-content">
+          <h3>Brasil: <em>panorámica</em>, aves y atardecer</h3>
+          <p class="lede">Cruce a Brasil para hacer todo lo del otro lado en un mismo día: Trilha das Cataratas, Parque das Aves y cierre en el Hito Tres Fronteras al atardecer.</p>
+
+          <div class="timeline">
+            <div class="event">
+              <div class="time">09:30</div>
+              <div class="title">Desayuno largo en el lodge</div>
+              <div class="detail">Sin apuro. El cuerpo viene del jueves intenso, hoy arranca más suave.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">10:30 — 11:15</div>
+              <div class="title">Cruce a Brasil</div>
+              <div class="detail">DNI argentino alcanza. Opciones: bus Río Uruguay desde la terminal, taxi/remis, o excursión contratada (la más cómoda si no quieren pensar). El cruce suele tardar 30–45 min.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">11:30 — 14:00</div>
+              <div class="title">Trilha das Cataratas · lado brasileño</div>
+              <div class="detail">
+                Desde el Centro de Visitantes, ómnibus ecológico 20 km adentro de la selva hasta el inicio del sendero. 1.5 km pavimentado y lineal con miradores continuos.
+                <ul>
+                  <li>Vista frontal completa del cañón</li>
+                  <li>Saltos Rivadavia y Tres Mosqueteros</li>
+                  <li>Final: pasarela que se mete frente a la Garganta del Diablo</li>
+                  <li>Ascensor panorámico al Porto Canoas para cerrar</li>
+                </ul>
+              </div>
+              <div class="tip">El lado brasileño es la platea, el argentino el escenario. Después del jueves ven la postal completa.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">14:00 — 15:00</div>
+              <div class="title">Almuerzo en Porto Canoas</div>
+              <div class="detail">Restaurante del parque con terraza sobre el río y sonido de las cataratas. Cocina brasileña típica. Alternativa: comer en el Café da Praça del Parque das Aves.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">15:15 — 17:30</div>
+              <div class="title">Parque das Aves</div>
+              <div class="detail">
+                Justo enfrente de la salida del parque nacional. 16 hectáreas, 1.300+ aves rescatadas del tráfico ilegal.
+                <ul>
+                  <li>Aviarios transitables donde las aves vuelan alrededor</li>
+                  <li>Tucanes, guacamayos, flamencos, ibis escarlata</li>
+                  <li>Alimentación ibis escarlata: 14:30 (ya pasó)</li>
+                  <li>Alimentación guacamayos: 15:30 — apuntar a llegar a tiempo</li>
+                  <li>Sendero pavimentado, accesible, con bancos</li>
+                </ul>
+              </div>
+              <div class="tip">Es una ONG de conservación de la Mata Atlántica, no un zoológico. Ese detalle cambia la experiencia.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">18:00 — 20:00</div>
+              <div class="title">Hito Tres Fronteras · atardecer</div>
+              <div class="detail">
+                Paran en el Hito volviendo a Puerto Iguazú. Entrada libre. 1.5 km del centro.
+                <ul>
+                  <li>Obelisco argentino + vista a los obeliscos de Brasil y Paraguay</li>
+                  <li>Confluencia de los ríos Iguazú y Paraná</li>
+                  <li>Feria artesanal local, bancos sobre el río para mate</li>
+                </ul>
+              </div>
+              <div class="tip">El show de Aguas Danzantes ha estado discontinuado; consultar en destino.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">21:00</div>
+              <div class="title">Cena en las 7 bocas</div>
+              <div class="detail">Zona de "7 esquinas" — concentración de restaurantes y bares de Puerto Iguazú. Alternativa: cena en el lodge si el cansancio pesa.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DÍA 3 -->
+      <div class="day-block">
+        <div class="day-marker">
+          <div class="date">25</div>
+          <div class="weekday">Sábado · Abril</div>
+          <span class="tag">Descanso</span>
+        </div>
+        <div class="day-content">
+          <h3>Día de <em>lodge</em>, con senderismo opcional</h3>
+          <p class="lede">Después de dos días intensos, el cuerpo manda. Mañana lenta, piscina, lectura. Si la energía y el clima aguantan, el Macuco queda como última aventura antes del vuelo.</p>
+
+          <div class="timeline">
+            <div class="event">
+              <div class="time">10:00</div>
+              <div class="title">Desayuno largo</div>
+              <div class="detail">Mañana sin despertador. El cuerpo viene cargado de Argentina + Brasil.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">11:00 — 14:00</div>
+              <div class="title">Lodge · piscina · selva alrededor</div>
+              <div class="detail">
+                El lodge como el destino, no como el lugar donde solo se duerme.
+                <ul>
+                  <li>Piscina con la selva de fondo</li>
+                  <li>Caminatas cortas por los senderos del lodge</li>
+                  <li>Hamaca, libro, silencio</li>
+                  <li>Las aves del Iryapú aparecen solas</li>
+                </ul>
+              </div>
+              <div class="tip">El pronóstico marca 25% de chance de lluvia con chaparrones nocturnos. Aprovechar la piscina en la primera parte del día.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">14:00 — 15:00</div>
+              <div class="title">Almuerzo tranquilo</div>
+              <div class="detail">En el lodge o en un restaurante típico de Puerto Iguazú (recomendados: Aqva, La Rueda, De la Fonte).</div>
+            </div>
+
+            <div class="event">
+              <div class="time">15:00 — 18:00</div>
+              <div class="title">Tarde a elección</div>
+              <div class="detail">Tres caminos según energía y clima:</div>
+              <div class="options">
+                <div class="option">
+                  <div class="letter">A</div>
+                  <div class="name">Sendero Macuco</div>
+                  <div class="text">Si hay energía y no llueve. 7 km ida y vuelta por selva, termina en el Salto Arrechea con pileta natural para bañarse. La caminata más agreste del parque.</div>
+                </div>
+                <div class="option">
+                  <div class="letter">B</div>
+                  <div class="name">Relax total</div>
+                  <div class="text">Quedarse en el lodge, masaje/spa si tiene, más piscina, ir cerrando el viaje con calma antes del vuelo.</div>
+                </div>
+                <div class="option">
+                  <div class="letter">C</div>
+                  <div class="name">Mini cultura</div>
+                  <div class="text">La Aripuca (construcción tradicional guaraní) o Güirá Oga (refugio de animales rescatados). Ambos techados si llueve. Feria artesanal del centro.</div>
+                </div>
+              </div>
+              <div class="tip">Si eligen el Macuco, salir antes de las 14:00 para volver con luz. Última entrada al sendero: 15:30.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">18:00 — 19:30</div>
+              <div class="title">Ducha, valijas, cena temprana</div>
+              <div class="detail">Dejar margen para imprevistos del cruce al aeropuerto. Si llueve fuerte, el tránsito se vuelve lento.</div>
+            </div>
+
+            <div class="event">
+              <div class="time">21:00 — 23:00</div>
+              <div class="title">Check-out · aeropuerto · vuelo</div>
+              <div class="detail">👋 Hasta la próxima, Misiones.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ TIPS ============ -->
+  <section class="tips">
+    <div class="tips-header">
+      <div class="section-label">04 / Info práctica</div>
+      <h2>Lo <em>imprescindible</em> antes de salir.</h2>
+    </div>
+
+    <div class="tips-grid">
+      <div class="tip-card wide">
+        <h4>Mochila de día <span class="num">ESENCIAL</span></h4>
+        <ul class="tip-list">
+          <li>Protector solar · gorra · lentes de sol</li>
+          <li>Repelente de insectos (fundamental en Brasil)</li>
+          <li>Impermeable o poncho — en las cataratas te mojás sí o sí</li>
+          <li>Bolsa impermeable / Ziploc para celular, billetera, documentos</li>
+          <li>Zapatillas cómodas con buena suela (pasarelas resbalosas)</li>
+          <li>Muda de ropa (sobre todo si hacés Gran Aventura)</li>
+          <li>Botella recargable — hay bebederos en ambos parques</li>
+        </ul>
+      </div>
+
+      <div class="tip-card narrow">
+        <h4>Documentos <span class="num">OBLIGATORIO</span></h4>
+        <ul class="tip-list">
+          <li>DNI argentino alcanza para cruzar a Brasil</li>
+          <li>Tarjeta con chip + efectivo en pesos</li>
+          <li>Entrada PN Iguazú: <strong>solo pesos argentinos</strong></li>
+          <li>Entrada lado brasileño: comprar online antes</li>
+        </ul>
+      </div>
+
+      <div class="tip-card half">
+        <h4>Horarios críticos <span class="num">CONSULTAR</span></h4>
+        <table class="hours-table">
+          <tr>
+            <td>Lado argentino</td>
+            <td>08:00 — 18:00</td>
+          </tr>
+          <tr>
+            <td>Acceso a cataratas</td>
+            <td>hasta 16:00</td>
+          </tr>
+          <tr>
+            <td>Último tren a Garganta</td>
+            <td>~15:30</td>
+          </tr>
+          <tr>
+            <td>Lado brasileño (sáb/dom)</td>
+            <td>08:30 — 16:00</td>
+          </tr>
+          <tr>
+            <td>Parque das Aves</td>
+            <td>desde 08:30</td>
+          </tr>
+        </table>
+      </div>
+
+      <div class="tip-card half">
+        <h4>Reservar con anticipación <span class="num">PRIORIDAD</span></h4>
+        <ul class="tip-list check">
+          <li><strong>Gran Aventura (el bote) — imprescindible reservar</strong>, cupos limitados</li>
+          <li>Entrada al lado brasileño (online)</li>
+          <li>Traslado entre países con excursión (más cómodo que bus de línea)</li>
+          <li>Traslado aeropuerto ↔ lodge</li>
+          <li>Reserva del lodge con piscina confirmada</li>
+          <li>Pesos argentinos y/o reales en efectivo</li>
+        </ul>
+      </div>
+
+      <div class="tip-card full" style="background: var(--moss-deep); color: var(--paper); border: none; padding: 48px;">
+        <h4 style="color: var(--paper); border-color: rgba(244,237,225,0.15);">Filosofía del viaje <span class="num" style="color: var(--ochre);">TENERLO PRESENTE</span></h4>
+        <p style="font-family: 'Fraunces', serif; font-style: italic; font-size: 24px; line-height: 1.4; color: var(--ochre); max-width: 700px;">
+          No se trata de ver todo. Un día intenso en Argentina con el bote metiéndose bajo las cataratas, un día panorámico en Brasil con las aves, y un día de lodge para que el cuerpo se acuerde de que está de viaje. La Garganta del Diablo y la Gran Aventura son los dos momentos que van a recordar — el resto es el marco para esos dos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="big">¡Buen viaje!</div>
+    <div class="sub">Puerto Iguazú · Misiones · Argentina · Abril 2026</div>
+  </div>
+</footer>
+
+</body>
+</html>
